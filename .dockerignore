@@ -1,0 +1,15 @@
+.git
+.agents
+.codex
+.aws
+.env
+.env.*
+config.php
+config.php.*
+var
+backup
+*.pem
+*.key
+.idea
+.vscode
+node_modules

@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    image: organilog-local:dev
+    ports:
+      - "127.0.0.1:8443:443"
+    environment:
+      ORGANILOG_CONFIG_FILE: /var/www/organilog/var/config.php
+    volumes:
+      - organilog-state:/var/www/organilog/var
+
+  test:
+    image: organilog-local:dev
+    profiles: [test]
+    user: www-data
+    command: [php, tests/run.php]
+    network_mode: none
+
+  apache-test:
+    image: organilog-local:dev
+    profiles: [test]
+    environment:
+      ORGANILOG_CONFIG_FILE: /var/www/organilog/var/config.php
+    command: [php, tests/apache.php]
+    network_mode: none
+
+volumes:
+  organilog-state:

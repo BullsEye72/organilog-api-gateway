@@ -1,0 +1,4 @@
+# Safety net: only public/ should be reachable (public/.htaccess re-allows it). If the
+# subdomain is ever pointed at this folder instead of public/, config.php, var/ (keys, logs)
+# and src/ still stay out of reach.
+Require all denied

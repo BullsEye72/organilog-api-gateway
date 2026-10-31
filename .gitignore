@@ -1,0 +1,16 @@
+# Local credentials and runtime state
+/config.php
+/var/
+/backup/
+
+# Local credentials, environment files, and editor/OS files
+.env
+.env.*
+!.env.example
+/config.php.*
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+/.idea/
+/.vscode/

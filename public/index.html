@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Organilog API console</title>
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><img id="brand-logo" hidden alt=""><span id="brand-name">Organilog API</span></div>
+  <form id="key-form" class="key-form" autocomplete="off">
+    <input id="key-input" type="password" placeholder="API key (olk_…)" spellcheck="false" aria-label="API key">
+    <button type="submit">Connect</button>
+    <button type="button" id="key-forget" class="ghost" hidden>Forget</button>
+  </form>
+  <div id="whoami" class="whoami"></div>
+</header>
+
+<div id="upstream-health" class="upstream-health" hidden>
+  <strong id="upstream-label" role="status" aria-live="polite">Organilog: status unknown</strong>
+  <span id="upstream-detail" class="muted"></span>
+</div>
+
+<nav class="tabs" id="tabs" hidden>
+  <button data-tab="console" class="active">Console</button>
+  <button data-tab="history">History</button>
+  <button data-tab="keys" id="tab-keys" hidden>Keys</button>
+</nav>
+
+<main id="welcome" class="welcome">
+  <h1>Organilog API console</h1>
+  <p>A self-hosted proxy to your Organilog account, with a separate key for each tool. Paste a key above to see the endpoints it may call.</p>
+  <p class="muted" id="setup-hint">Setting up a new instance? <a href="setup.php">Open the setup wizard</a> to connect your account and get an admin key.</p>
+  <p class="muted">The key is kept in this tab only (sessionStorage) and is sent as <code>Authorization: Bearer …</code>.</p>
+</main>
+
+<section id="view-console" class="view console" hidden>
+  <aside class="sidebar">
+    <input id="filter" type="search" placeholder="Filter endpoints…" aria-label="Filter endpoints">
+    <label class="check"><input type="checkbox" id="only-allowed" checked> Only what this key may call</label>
+    <div id="endpoint-list" class="endpoint-list"></div>
+  </aside>
+
+  <div class="workspace">
+    <div id="empty-state" class="empty">Pick an endpoint on the left.</div>
+
+    <div id="request" hidden>
+      <div class="ep-head">
+        <span id="ep-kind" class="badge"></span>
+        <h2 id="ep-name"></h2>
+        <span id="ep-verified" class="badge verified" title="Exercised against the live API">verified live</span>
+        <span id="ep-unverified" class="badge muted" title="Taken from the docs; never called live from our tools">docs only</span>
+      </div>
+      <div id="ep-note" class="note" hidden></div>
+      <div id="ep-entity-note" class="note subtle" hidden></div>
+      <details id="ep-doc"><summary>Organilog documentation</summary><pre id="ep-desc"></pre></details>
+
+      <div class="request-line">
+        <select id="method" aria-label="HTTP method"><option>POST</option><option>GET</option></select>
+        <code id="url"></code>
+        <label class="check"><input type="checkbox" id="normalize"> normalize</label>
+        <button id="send" class="primary">Send <kbd>Ctrl ↵</kbd></button>
+      </div>
+
+      <div class="editor-head">
+        <span>Body <span class="muted">(account and token are added server-side)</span></span>
+        <span class="actions">
+          <button id="format" class="ghost">Format</button>
+          <button id="reset" class="ghost">Reset to sample</button>
+          <button id="curl" class="ghost">Copy as curl</button>
+        </span>
+      </div>
+      <textarea id="body" spellcheck="false" aria-label="Request body"></textarea>
+      <div id="body-error" class="field-error" hidden></div>
+    </div>
+
+    <div id="response" class="response" hidden>
+      <div class="response-head">
+        <span id="res-status" class="status"></span>
+        <span id="res-meta" class="muted"></span>
+        <span class="actions"><button id="res-copy" class="ghost">Copy</button></span>
+      </div>
+      <pre id="res-body" class="json"></pre>
+    </div>
+  </div>
+</section>
+
+<section id="view-history" class="view padded" hidden>
+  <div class="section-head">
+    <h2>History</h2>
+    <button id="history-clear" class="ghost">Clear</button>
+  </div>
+  <p class="muted">Last 50 requests from this browser. Bodies only, never the key or the responses.</p>
+  <table class="table" id="history-table"><thead><tr><th>When</th><th>Endpoint</th><th>Status</th><th>Time</th><th></th></tr></thead><tbody></tbody></table>
+</section>
+
+<section id="view-keys" class="view padded" hidden>
+  <div class="section-head"><h2>API keys</h2><button id="key-new" class="primary">New key</button></div>
+  <p class="muted">One key per tool. Permissions only grant: the <code>*</code> row applies to every entity, and an entity's own row adds to it.</p>
+  <table class="table" id="keys-table">
+    <thead><tr><th>Name</th><th>Key</th><th>Permissions</th><th>Limit/min</th><th>Today</th><th>Last used</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <form id="key-editor" class="key-editor" hidden>
+    <h3 id="key-editor-title">New key</h3>
+    <div class="grid2">
+      <label>Name <input name="name" required maxlength="64" placeholder="discord-bot"></label>
+      <label>Rate limit per minute <input name="rate_limit_per_minute" type="number" min="0" max="10000" value="60"><span class="muted">0 = unlimited</span></label>
+    </div>
+    <label>Notes <input name="notes" maxlength="500" placeholder="What uses it, who owns it"></label>
+    <label class="check"><input type="checkbox" name="enabled" checked> Enabled</label>
+    <label class="check"><input id="key-all-permissions" type="checkbox" aria-describedby="key-all-permissions-help" aria-controls="key-custom-permissions"> All permissions</label>
+    <p id="key-all-permissions-help" class="muted">Read, create, update and delete across all entities. Server write settings still apply.</p>
+    <div id="key-custom-permissions">
+      <div class="matrix-head">
+        <strong>Permissions</strong>
+        <input id="matrix-filter" type="search" placeholder="Filter entities…">
+      </div>
+      <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="primary">Save</button>
+      <button type="button" id="key-editor-cancel" class="ghost">Cancel</button>
+    </div>
+  </form>
+</section>
+
+<dialog id="secret-dialog">
+  <h3 id="secret-title">New key</h3>
+  <p>This is the only time it is shown. Store it in the tool's configuration now.</p>
+  <div class="secret"><code id="secret-value"></code><button id="secret-copy">Copy</button></div>
+  <form method="dialog"><button class="primary">Done</button></form>
+</dialog>
+
+<div id="toast" class="toast" hidden></div>
+<script src="console.js"></script>
+</body>
+</html>
