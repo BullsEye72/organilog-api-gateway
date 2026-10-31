@@ -1,0 +1,62 @@
+name: Bug report
+description: Report a reproducible problem with the proxy or console.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the project. Search existing issues first.
+        For suspected vulnerabilities, follow the [security policy](https://github.com/BullsEye72/organilog-api-gateway/blob/main/SECURITY.md) instead of posting details here.
+        Remove tokens, keys, account identifiers, customer records, and other private data from all examples and screenshots.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Which release or commit are you running?
+      placeholder: Release tag or commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include PHP version, web server, installation method, and browser if relevant. Do not include credentials or private hostnames.
+      placeholder: PHP version; Apache/Nginx/local PHP/Docker; operating system; browser and version
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Use a minimal example with fabricated data.
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include relevant error messages and HTTP status codes, with private data removed.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Optional sanitized screenshots, logs, workarounds, or related issues.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have removed credentials and private data, and this is not a vulnerability report.
+          required: true

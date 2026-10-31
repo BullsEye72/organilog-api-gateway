@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security reporting
+    url: https://github.com/BullsEye72/organilog-api-gateway/blob/main/SECURITY.md
+    about: Follow the private reporting instructions for suspected vulnerabilities.
+  - name: Setup and development guide
+    url: https://github.com/BullsEye72/organilog-api-gateway/blob/main/docs/development.md
+    about: Read the local setup and test instructions before reporting a development problem.

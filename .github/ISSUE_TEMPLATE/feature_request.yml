@@ -1,0 +1,33 @@
+name: Feature request
+description: Suggest an improvement to the proxy, console, or documentation.
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing requests first. Describe your use case without sharing credentials or customer data.
+        This is a community integration; changes to Organilog's own API or service must be requested from Organilog.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Explain the task you are trying to complete and who would benefit.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed behavior
+      description: Describe how you would expect the feature to work.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include existing workarounds or other approaches you considered.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Optional examples, mockups, related issues, or compatibility considerations. Use fabricated data.
