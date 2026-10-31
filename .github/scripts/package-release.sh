@@ -16,7 +16,7 @@ git archive --format=zip --prefix=organilog/ --output="dist/$archive" HEAD -- \
     src public data \
     bin/setup.php bin/keygen.php bin/router.php \
     deploy/nginx.conf \
-    README.md docs LICENSE NOTICE SECURITY.md CODE_OF_CONDUCT.md CONTRIBUTING.md
+    README.md README.fr.md docs LICENSE NOTICE SECURITY.md CODE_OF_CONDUCT.md CONTRIBUTING.md
 
 unzip -t "dist/$archive"
 (
