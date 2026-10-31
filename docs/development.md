@@ -143,6 +143,63 @@ API. Review the generated diff before committing. Historical `verified_live` fla
 describe development checks, not validation against every installation or future API
 version. Endpoint notes document known documentation discrepancies and uncertainties.
 
+## CI and releases
+
+The [CI workflow](../.github/workflows/ci.yml) runs on pull requests and pushes to
+`main`, and can also be started from the repository's **Actions** tab. It uses
+GitHub-hosted Ubuntu runners; no self-hosted runner or repository secrets are
+required. Enable GitHub Actions in the repository if it is disabled.
+
+The workflow checks PHP syntax on 8.1 and 8.4, builds an installable ZIP, and runs
+the offline PHP suite against its extracted application files. Tests are copied
+into that temporary installation solely for verification. Separate jobs run both
+Node.js checks with Node 24 and build the Docker image to run the PHP and real
+Apache/HTTPS suites. All suites use disposable data and dummy credentials.
+
+After the first successful run, configure a branch ruleset for `main` requiring
+the **CI passed** status check before merging. That check fails if any test job
+fails, is cancelled, or is skipped. Workflow actions are pinned to commit hashes;
+Dependabot opens weekly grouped update PRs for them.
+
+To inspect a build, download **release-package** from its Actions run. It contains
+an installable ZIP and a SHA-256 checksum, retained for seven days. You can also
+build the last committed revision locally with Git, Bash, unzip, and sha256sum
+(available on Linux or Git Bash on Windows):
+
+```sh
+bash .github/scripts/package-release.sh dev
+cd dist
+sha256sum --check organilog-dev.zip.sha256
+```
+
+The script uses an explicit list of tracked application files from `HEAD`.
+Uncommitted changes, instance configuration, runtime data, tests, CI files, and
+the local Docker environment are excluded. The ZIP includes `organilog/public/`
+and both hidden `.htaccess` files, plus the CLI tools, catalog, hosting example,
+documentation, and license notices. Development documentation refers to tools
+available in the full source repository.
+
+To publish a stable release, merge the intended changes to `main`, check that CI
+passes, then tag that commit and push the tag. For example, from an up-to-date,
+clean checkout of `main`, replacing the version with the next release:
+
+```sh
+git tag -a v1.0.0 -m "Release v1.0.0"
+git push origin v1.0.0
+```
+
+Tags must use `vMAJOR.MINOR.PATCH`; other `v*` tags fail packaging. The
+[release workflow](../.github/workflows/release.yml) reruns the complete CI workflow
+on the tagged commit. Only after every check succeeds does it publish a GitHub
+Release with generated notes, the tested ZIP, and its checksum. Publishing uses
+the built-in `GITHUB_TOKEN`; only that job has `contents: write` permission. Create
+a new version tag for subsequent releases rather than moving an existing tag.
+
+Deployment stays manual: use the release ZIP with the
+[installation guide](../README.md) or the
+[update instructions](administration.md#updating-an-existing-installation).
+Preserve the existing `config.php` and all of `var/` when updating.
+
 ## Publishing source code
 
 Before your first Git push, review the files being committed. `.gitignore` excludes

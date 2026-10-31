@@ -66,6 +66,13 @@ for console changes. The offline suites use disposable fixtures and do not need
 live Organilog credentials. If you cannot run a relevant check, say so in your PR
 and explain what you verified instead.
 
+GitHub Actions runs these checks on pull requests and pushes to `main`, using
+GitHub-hosted Ubuntu runners. PHP 8.1 and 8.4 run syntax checks and the offline
+suite against the extracted release ZIP. Separate jobs run the Node.js checks
+and Docker/Apache checks. No live credentials or self-hosted runner are needed.
+See the [CI and release guide](docs/development.md#ci-and-releases) for packaging
+and release instructions.
+
 ## Submit a pull request
 
 Target `main`. Explain the problem, the resulting behavior, and how you checked
