@@ -305,6 +305,8 @@ function updateUrl() {
 
 // --- send --------------------------------------------------------------------------------
 async function send() {
+  const btn = $("#send");
+  if (btn.disabled) return;
   const ep = state.current;
   if (!ep) return;
   const body = parseBody();
@@ -314,13 +316,14 @@ async function send() {
     if (!confirm(`${ep.kind.toUpperCase()} ${ep.entity}${target} on the LIVE Organilog account?\n\nThis is production data.`)) return;
   }
   const method = $("#method").value;
-  const btn = $("#send");
+  const submittedBody = $("#body").value;
+  const normalize = $("#normalize").checked;
   btn.disabled = true;
   btn.firstChild.textContent = "Sending… ";
   try {
     const res = await api(method, requestUrl(body), method === "POST" ? body : undefined);
     showResponse(res);
-    pushHistory({ id: ep.id, method, body: $("#body").value, normalize: $("#normalize").checked, status: res.status, ms: res.ms, at: new Date().toISOString() });
+    pushHistory({ id: ep.id, method, body: submittedBody, normalize, status: res.status, ms: res.ms, at: new Date().toISOString() });
   } catch (e) {
     showResponse({ status: 0, ok: false, json: null, text: String(e), ms: 0 });
   } finally {

@@ -20,12 +20,14 @@ if (str_starts_with($scenario, 'verify_')) {
         if ($reads >= 2 && $scenario === 'verify_http_error') { http_response_code(503); echo '{}'; return; }
         if ($reads >= 2 && $scenario === 'verify_transport') { header('Content-Length: 4096'); echo '{'; return; }
         $row = ['id' => '123', 'name' => $reads === 1 ? 'before' : 'after', 'description' => 'keep'];
-        if ($reads >= 2 && $scenario === 'verify_restore_invalid') $row['description'] = '';
+        if ($reads >= 2 && in_array($scenario, ['verify_restore_invalid', 'verify_restore_rejected'], true)) $row['description'] = '';
         echo json_encode(['results' => [$row]]);
         return;
     }
     if ($action === 'update' && $scenario === 'verify_write_invalid') { echo '{broken'; return; }
+    if ($action === 'update' && $scenario === 'verify_write_rejected') { echo '{"ERROR":"Update rejected"}'; return; }
     if ($action === 'update' && ($state[$scenario]['writes'] ?? 0) === 2) {
+        if ($scenario === 'verify_restore_rejected') { echo '{"ERROR":"Restoration rejected"}'; return; }
         echo '<html>unknown restoration outcome</html>';
         return;
     }
@@ -38,6 +40,7 @@ switch ($scenario) {
     case 'list': echo '[{"id":"123"}]'; break;
     case 'empty_object': echo '{}'; break;
     case 'empty_list': echo '[]'; break;
+    case 'application_error': echo '{"ERROR":"Invalid token"}'; break;
     case 'html': header('Content-Type: text/html'); echo '<html>not JSON</html>'; break;
     case 'malformed': echo '{broken'; break;
     case 'empty': break;

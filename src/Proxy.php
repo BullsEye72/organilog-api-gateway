@@ -46,7 +46,8 @@ final class Proxy
         [$status, $decoded, $raw] = $this->upstream->call(Catalog::path($endpoint), $payload, $kind === 'read');
         $ms = (int) round((microtime(true) - $started) * 1000);
 
-        $ok = $status >= 200 && $status < 300;
+        $applicationError = UpstreamResponse::isError($decoded);
+        $ok = $status >= 200 && $status < 300 && !$applicationError;
         $meta = ['upstream_status' => $status, 'upstream_ms' => $ms];
 
         if ($kind === 'update' && $ok) {
@@ -69,6 +70,9 @@ final class Proxy
             $body['raw'] = mb_substr((string) $raw, 0, 5000);
         }
         $body['meta'] = $meta + ['upstream_calls' => $this->upstream->calls, 'key' => $principal->name];
+        if ($applicationError) {
+            $body['error'] = ['code' => 'upstream_rejected', 'message' => 'Organilog rejected the request; see data for its response.'];
+        }
 
         if (($meta['verification']['status'] ?? null) === 'fields_lost') {
             $body['ok'] = false;
@@ -80,7 +84,7 @@ final class Proxy
     private function snapshot(string $entity, string $id): ?array
     {
         [$status, $decoded] = $this->upstream->call("$entity/read_multiple.php", ['ids' => $id], true);
-        if ($status !== 200 || !is_array($decoded)) {
+        if ($status !== 200 || !is_array($decoded) || UpstreamResponse::isError($decoded)) {
             return null;
         }
         $rows = $decoded['results'] ?? (array_is_list($decoded) ? $decoded : []);
@@ -142,7 +146,10 @@ final class Proxy
             }
         }
         try {
-            $this->upstream->call(Catalog::path(['entity' => $endpoint['entity'], 'action' => 'update']), ['id' => $id, 'data' => $intended], false);
+            [$restoreStatus, $restoreBody] = $this->upstream->call(Catalog::path(['entity' => $endpoint['entity'], 'action' => 'update']), ['id' => $id, 'data' => $intended], false);
+            if ($restoreStatus < 200 || $restoreStatus >= 300 || UpstreamResponse::isError($restoreBody)) {
+                throw new ApiError(502, 'upstream_rejected', 'Organilog rejected the restoration.');
+            }
             $restored = $this->snapshot($endpoint['entity'], $id);
         } catch (ApiError $e) {
             if (!str_starts_with($e->errorCode, 'upstream_')) {

@@ -355,6 +355,12 @@ Deploy new source files while preserving the existing `config.php` and **all of
 `var/`**. Never overwrite runtime state with a local copy. Back up the instance
 before upgrading, then run `php bin/setup.php --check` and test console access.
 
+This version uses persistent sibling `.lock` files and atomic replacement for
+JSON state. When upgrading from the older code that locked the JSON file itself,
+briefly pause incoming requests and let existing PHP requests finish before
+deploying the updated source. The two locking methods must not run together.
+Keep the `.lock` files in `var/`; do not delete them while the app is running.
+
 Before your first Git push, review the files being committed. `.gitignore` excludes
 the local config, its backups, runtime data, environment files, and private key
 files. Commit `config.example.php` and `data/catalog.json`; each user supplies their
@@ -387,6 +393,7 @@ Run the offline checks with PHP and its required extensions:
 ```sh
 php tests/run.php
 node tests/console_status_test.js
+node tests/console_requests_test.js
 ```
 
 The checks use an isolated temporary installation and fabricated local upstream

@@ -119,12 +119,31 @@ try {
     check(($writeError?->details['write_outcome'] ?? '') === 'unknown' && $invalidWrite->calls === 1, 'An invalid write reply must communicate uncertainty and never retry.');
     $catalog = new Catalog();
     $admin = new Principal('admin', 'admin', true);
-    foreach (['verify_invalid', 'verify_http_error', 'verify_restore_invalid'] as $scenario) {
+    foreach ([
+        ['ERROR' => 'Invalid token'], ['errors' => ['Rejected']], ['SUCCESS' => false],
+        ['ok' => false], ['status' => 'failed'], ['MESSAGE' => 'Invalid token'],
+    ] as $body) {
+        check(UpstreamResponse::isError($body), 'Explicit application rejections must be recognized.');
+    }
+    foreach ([['ERROR' => false, 'company' => 'Fixture'], ['message' => 'No errors found'], [], [['id' => '123']]] as $body) {
+        check(!UpstreamResponse::isError($body), 'Successful documents and result lists must remain accepted.');
+    }
+    foreach (['issue/read_all', 'issue/create', 'issue/delete', 'issue/update'] as $endpoint) {
+        file_put_contents($file, '{}');
+        $scenario = $endpoint === 'issue/update' ? 'verify_write_rejected' : 'application_error';
+        $client = new Upstream(array_merge($options, ['base_url' => 'http://' . $address . '/response/' . $scenario]), $health);
+        $proxy = new Proxy(['allow_writes' => true, 'verify_updates' => true], $catalog, $client);
+        [$resultStatus, $reply] = $proxy->handle($admin, $endpoint, ['id' => '123', 'data' => ['name' => 'after']], false);
+        check($resultStatus === 502 && !$reply['ok'] && $reply['error']['code'] === 'upstream_rejected', 'HTTP 200 application errors must fail: ' . $endpoint);
+        check(!isset($reply['meta']['verification']) && !isset($reply['meta']['write_outcome']), 'Rejected writes must not be verified or acknowledged.');
+        check($client->calls === ($endpoint === 'issue/update' ? 2 : 1), 'Application errors must not trigger retries or post-write verification.');
+    }
+    foreach (['verify_invalid', 'verify_http_error', 'verify_restore_invalid', 'verify_restore_rejected'] as $scenario) {
         file_put_contents($file, '{}');
         $client = new Upstream(array_merge($options, ['base_url' => 'http://' . $address . '/response/' . $scenario]), $health);
         $proxy = new Proxy(['allow_writes' => true, 'verify_updates' => true], $catalog, $client);
         [$resultStatus, $reply] = $proxy->handle($admin, 'issue/update', ['id' => '123', 'data' => ['name' => 'after']], false);
-        if ($scenario === 'verify_restore_invalid') {
+        if (in_array($scenario, ['verify_restore_invalid', 'verify_restore_rejected'], true)) {
             check($resultStatus === 502 && !$reply['meta']['verification']['restored'], 'Unconfirmed restoration must report field loss without retrying blindly.');
         } else {
             check($resultStatus === 200 && $reply['meta']['write_outcome'] === 'acknowledged'
@@ -142,5 +161,6 @@ try {
     if (is_resource($process)) { proc_terminate($process); proc_close($process); }
     fclose($log);
     unlink($file);
+    unlink($file . '.lock');
     unlink($responseState);
 }

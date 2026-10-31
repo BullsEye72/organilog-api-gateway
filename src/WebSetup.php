@@ -91,8 +91,7 @@ final class WebSetup
         $error = $fields['error'] ?? $fields['errors'] ?? null;
         $message = is_string($fields['message'] ?? null) ? $fields['message'] : '';
         $failed = $status < 200 || $status >= 300 || !is_array($body) || $body === []
-            || !empty($error) || ($fields['success'] ?? true) === false || ($fields['ok'] ?? true) === false
-            || (is_scalar($fields['status'] ?? null) && in_array(strtolower((string) $fields['status']), ['error', 'failed', 'failure', 'unauthorized'], true))
+            || UpstreamResponse::isError($body)
             || preg_match('/error|invalid|invalide|unauthori|incorrect|refus|denied|erreur/i', $message);
         if (!$failed) {
             return;

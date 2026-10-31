@@ -231,16 +231,18 @@ try {
 
     require __DIR__ . '/health-api-checks.php';
     require __DIR__ . '/installer-checks.php';
-    $healthTest = proc_open(array_merge(php_command(), [__DIR__ . '/upstream_test.php']),
-        [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $healthPipes, ORGANILOG_ROOT);
-    if (!is_resource($healthTest)) throw new RuntimeException('Cannot start upstream health checks.');
-    fclose($healthPipes[0]);
-    $healthOutput = stream_get_contents($healthPipes[1]);
-    $healthErrors = stream_get_contents($healthPipes[2]);
-    fclose($healthPipes[1]);
-    fclose($healthPipes[2]);
-    check(proc_close($healthTest) === 0, 'Upstream health checks failed: ' . $healthOutput . $healthErrors);
-    echo $healthOutput;
+    foreach (['json_file_test.php', 'upstream_test.php'] as $testFile) {
+        $process = proc_open(array_merge(php_command(), [__DIR__ . '/' . $testFile]),
+            [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $testPipes, ORGANILOG_ROOT);
+        if (!is_resource($process)) throw new RuntimeException('Cannot start ' . $testFile);
+        fclose($testPipes[0]);
+        $output = stream_get_contents($testPipes[1]);
+        $errors = stream_get_contents($testPipes[2]);
+        fclose($testPipes[1]);
+        fclose($testPipes[2]);
+        check(proc_close($process) === 0, $testFile . ' failed: ' . $output . $errors);
+        echo $output;
+    }
     echo "Passed $checks offline installation and API checks. No live Organilog requests were made.\n";
 } finally {
     if (is_resource($server)) {
