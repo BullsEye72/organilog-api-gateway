@@ -24,7 +24,9 @@ subdomain, such as `organilog.example.com`; installation under a URL path such a
 
 ### 1. Upload the files
 
-Download and extract this repository, then upload the project to your hosting,
+Download the installable **`organilog-vX.Y.Z.zip`** asset from a
+[GitHub Release](https://github.com/BullsEye72/organilog-api-gateway/releases),
+or download this repository. Extract it, then upload the project to your hosting,
 including the hidden `.htaccess` files. Set your domain's document root to the
 project's **`public/`** folder and enable HTTPS.
 

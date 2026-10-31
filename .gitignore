@@ -2,6 +2,7 @@
 /config.php
 /var/
 /backup/
+/dist/
 
 # Local credentials, environment files, and editor/OS files
 .env
