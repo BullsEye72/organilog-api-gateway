@@ -30,6 +30,8 @@ you deliberately need them in an account you are authorized to use.
   style. Avoid unrelated formatting or generated-file changes.
 - Add or update tests when you change behavior, and update documentation when
   setup, configuration, or API behavior changes.
+- Keep the English `README.md` and French `README.fr.md` in sync when changing
+  setup or usage instructions. Use the actual English UI labels in both versions.
 - Keep credentials, configuration, logs, backups, and customer data out of commits,
   screenshots, and test fixtures. Review your staged diff before committing;
   `.gitignore` does not protect files that are already tracked.

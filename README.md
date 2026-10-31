@@ -1,11 +1,29 @@
 # Organilog API proxy
 
+**English** | [Français](README.fr.md)
+
 A self-hosted PHP proxy and browser console for the Organilog v3 API. Connect your
 Organilog account once, then give each app or automation its own API key, permissions,
 and request limit. Your Organilog token stays on your server.
 
 The console lets you browse endpoints, try requests, view request history, and
 manage integration keys. No database or dependency installation is needed.
+
+[Download a release](https://github.com/BullsEye72/organilog-api-gateway/releases)
+· [Install](#install-on-your-webserver)
+· [Hosting guide](docs/administration.md)
+· [Development](docs/development.md)
+
+![Organilog API console in dark mode, showing the searchable endpoint catalog and a sample ticket request](docs/screenshots/console.png)
+
+*Browse endpoints, edit JSON requests, and see Organilog availability in one console.*
+
+- **Explore the API.** Start from request samples, read endpoint notes, and copy
+  requests as curl commands.
+- **Control each integration.** Give every tool its own key, permissions, and
+  request limit.
+- **Keep track of activity.** Check upstream availability and revisit requests
+  in your browser's history.
 
 ## What you need
 
@@ -68,6 +86,11 @@ Setup saves your configuration and locks itself. If it asks you to remove
 
 Use a separate key for each integration. The admin key lets you manage those keys;
 keep it for administration.
+
+![API key management showing per-integration permissions, request limits, usage, and key controls; key names and prefixes are blurred](docs/screenshots/api-keys.png)
+
+*Manage permissions and request limits per integration, with usage and last-used
+details at a glance. Names and key prefixes are blurred in this screenshot.*
 
 ## Use the console and API
 
