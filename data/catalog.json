@@ -1,6 +1,6 @@
 {
   "source": "https://documenter.getpostman.com/view/2071554/UzJFxK4j",
-  "generated_at": "2026-10-05T09:37:45.706Z",
+  "generated_at": "2026-11-01T21:18:05.843Z",
   "daily_limit_note": "limite journalière de 40.000 requêtes",
   "entities": {
     "account": {
@@ -148,6 +148,7 @@
       "kind": "read",
       "group": "Account",
       "name": "Vérifier le compte entreprise",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#dac793b6-06b5-461f-b48a-176972432208",
       "description": "Première étape pour vérifier que la connexion à cette API fonctionne bien. Cette étape consiste uniquement à envoyer le nom du compte (le sous-domaine) et un TOKEN, tandis que sera retourné quelques informations basiques sur le compte (nom de la société, email, téléphone, prénom et nom).",
       "sample": {},
       "verified_live": true,
@@ -160,6 +161,7 @@
       "kind": "create",
       "group": "Client",
       "name": "Client CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9100685d-f7c0-4be6-8595-d30ac92ad572",
       "description": "Il est possible d'ajouter un client sur Organilog en suivant le descriptif de cette API. Le seul élément obligatoire est le title (Nom principal) du client.",
       "sample": {
         "data": {
@@ -208,6 +210,7 @@
       "kind": "read",
       "group": "Client",
       "name": "Client READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#16d61711-1ec1-488b-8ec0-1cc6b6dccf5a",
       "description": "Permet de lire les informations d'un client.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nIl est également possible d'utiliser le champ \"autre identifiant\" via le paramètre code (à la place de id ).\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.\nLe paramètre include_author permet d'obtenir les information de l'auteur qui a créé ce client.\nLe paramètre include_filiale permet d'obtenir les informations du type d'activité (parfois intitulé \"Agence\" ou \"Filiale\") lié à cet élément.",
       "sample": {
         "id": "294957",
@@ -225,6 +228,7 @@
       "kind": "read",
       "group": "Client",
       "name": "Client READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#4e29ab0d-a280-417e-a3df-05cca1f1d41d",
       "description": "Permet de chercher les clients par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les clients.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre email (optionnel) permet de filtrer pour obtenir uniquement les éléments ayant exactement l'email spécifié.\nLe paramètre type (optionnel) permet de filtrer pour obtenir uniquement les éléments lié à un type. Les valeurs possibles sont les suivantes : \"0\" (Prospect), \"1\" (Client), \"2\" (Partenaire).\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -243,6 +247,7 @@
       "kind": "read",
       "group": "Client",
       "name": "Client READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b03cb62e-1df5-4f1d-a423-2e31d9f261c0",
       "description": "Permet de lire les informations de une ou plusieurs clients. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre type (optionnel) permet de filtrer pour obtenir uniquement les éléments lié à un type. Les valeurs possibles sont les suivantes : \"0\" (Prospect), \"1\" (Client), \"2\" (Partenaire).\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "2026542,1944350,1487412"
@@ -257,6 +262,7 @@
       "kind": "update",
       "group": "Client",
       "name": "Client UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#8f81852b-2e72-4388-8438-4d8648fae78a",
       "description": "Il est possible de modifier un client. Il est nécessaire de compléter le champ id pour spécifier le client qui doit être modifié. Il est également possible d'utiliser le champ code pour identifier le client.",
       "sample": {
         "id": "10376354",
@@ -306,6 +312,7 @@
       "kind": "delete",
       "group": "Client",
       "name": "Client DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#47f24fae-9a63-44d3-8786-3639c98f3ae0",
       "description": "Il est possible de supprimer un client. Il est nécessaire de compléter le champ id pour spécifier le client qui doit être supprimé.",
       "sample": {
         "id": "171379"
@@ -320,6 +327,7 @@
       "kind": "read",
       "group": "Client",
       "name": "Client SEARCH",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b3b42896-6126-415c-8663-2f62d1ec5aba",
       "description": "Permet de chercher les clients qui possèdent un mot-clé dans le titre de celui-ci.\nLe terme a rechercher est défini soit par le paramètre title (pour chercher par libellé du client) soit par le terme code (pour chercher par 'autre identifiant' avec une recherche exacte).\nUne limite de 10 résultats au maximum est proposé, trié par ordre alphabétique.\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre type (optionnel) permet de filtrer pour obtenir uniquement les éléments lié à un type. Les valeurs possibles sont les suivantes : \"0\" (Prospect), \"1\" (Client), \"2\" (Partenaire).\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "title": "example",
@@ -335,6 +343,7 @@
       "kind": "create",
       "group": "Adresse",
       "name": "Adresse CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#31562289-f1fc-4012-8780-9cea150da119",
       "description": "Il est possible d'ajouter une adresse sur Organilog en suivant le descriptif de cette API. Au moins un élément est obligatoire parmi la rue, le code postal, la ville ...",
       "sample": {
         "data": {
@@ -373,6 +382,7 @@
       "kind": "read",
       "group": "Adresse",
       "name": "Adresse READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#4102bf2c-c44f-4750-b026-d717fb173675",
       "description": "Permet de lire les informations d'une adresse.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "814848",
@@ -388,6 +398,7 @@
       "kind": "read",
       "group": "Adresse",
       "name": "Adresse READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#1e0db56b-1d1d-4765-8c97-1e0aa8ae12c5",
       "description": "Permet de chercher les adresses par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les équipements.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "last_datetime": "2022-01-10 12:00",
@@ -405,6 +416,7 @@
       "kind": "read",
       "group": "Adresse",
       "name": "Adresse READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#caf0cd9a-c602-40fb-8e79-e1bc2429947c",
       "description": "Permet de lire les informations de une ou plusieurs adresses. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "ids": "3982863,3982858,2985132,2973340"
@@ -419,6 +431,7 @@
       "kind": "update",
       "group": "Adresse",
       "name": "Adresse UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#3fe6dd6c-a5c5-4e42-a2e6-2b7f582ba15f",
       "description": "Il est possible de modifier une adresse. Il est nécessaire de compléter le champ id pour spécifier l'adresse qui doit être modifié.",
       "sample": {
         "id": "509514",
@@ -458,6 +471,7 @@
       "kind": "delete",
       "group": "Adresse",
       "name": "Adresse DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#3a7aba06-c469-49ae-8cc4-7fbf930d2786",
       "description": "Il est possible de supprimer une adresse. Il est nécessaire de compléter le champ id pour spécifier l'adresse qui doit être supprimé.",
       "sample": {
         "id": "509514"
@@ -472,6 +486,7 @@
       "kind": "read",
       "group": "Adresse",
       "name": "Adresse SEARCH",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9071769b-5f37-47c4-82a7-90c0c051fb6f",
       "description": "Permet de chercher les adresses qui possèdent un mot-clé dans la rue, le code postal ou la ville. Le terme a rechercher est défini par le paramètre search . Une limite de 10 résultats au maximum est proposé, trié par ordre alphabétique de la ville, puis de la rue.\nLe champ fk_client_id est facultatif. Il permet de filtrer pour rechercher uniquement parmi les adresses d'un client spécifique uniquement.\nLe champ societe est facultatif. Il permet de filtrer pour rechercher sur le champ \"Société\".\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre  is_actif  (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "search": "rue",
@@ -490,6 +505,7 @@
       "kind": "create",
       "group": "Contact",
       "name": "Contact CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6ce3cd5b-0375-4e34-ac83-0bf4d1b51e29",
       "description": "Il est possible d'ajouter un contact sur Organilog en suivant le descriptif de cette API. Le seul élément obligatoire est le fk_client_id (id du client) associée à ce contact.",
       "sample": {
         "data": {
@@ -512,6 +528,7 @@
       "kind": "read",
       "group": "Contact",
       "name": "Contact READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#a97c4631-c764-47e3-8b2f-4efdca262e30",
       "description": "Permet de lire les informations d'un contact.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "77134",
@@ -527,6 +544,7 @@
       "kind": "read",
       "group": "Contact",
       "name": "Contact READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9e151e59-0a17-47e2-9c37-6045e840bb94",
       "description": "Permet de chercher les contacts par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les contacts.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre email (optionnel) permet de filtrer pour obtenir uniquement les éléments ayant exactement l'email spécifié.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -544,6 +562,7 @@
       "kind": "read",
       "group": "Contact",
       "name": "Contact READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9da35613-ea1d-4c2b-8cf8-98162bcf24b4",
       "description": "Permet de lire les informations de une ou plusieurs contacts. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "77134,77129,71561"
@@ -558,6 +577,7 @@
       "kind": "update",
       "group": "Contact",
       "name": "Contact UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#7d84a665-d5da-4bf7-93a8-f4a6e8e7c309",
       "description": "Il est possible de modifier un contact. Il est nécessaire de compléter le champ id pour spécifier le contact qui doit être modifié.",
       "sample": {
         "id": "1234",
@@ -581,6 +601,7 @@
       "kind": "delete",
       "group": "Contact",
       "name": "Contact DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#190703c0-ee22-454a-bd44-0b6c891aae1c",
       "description": "Il est possible de supprimer un contact. Il est nécessaire de compléter le champ id pour spécifier le contact qui doit être supprimé.",
       "sample": {
         "id": "1234"
@@ -595,6 +616,7 @@
       "kind": "create",
       "group": "Contrat",
       "name": "Contrat CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#031f9324-e46a-4702-99f6-182e27c8af56",
       "description": "Il est possible d'ajouter un contrat sur Organilog en suivant le descriptif de cette API. Le seul élément obligatoire est le fk_client_id (id du client) associée à ce contact.",
       "sample": {
         "data": {
@@ -620,6 +642,7 @@
       "kind": "read",
       "group": "Contrat",
       "name": "Contrat READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#954be3b5-894d-49da-b3a8-f807c42e1fbe",
       "description": "Permet de lire les informations d'un contrat.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_products permet d'obtenir la liste des produits insérés dans le tableau du contrat. Lorsque la valeur est à \"1\", il retourne un tableau contenant notamment des valeurs tels que : id, fk_product_id, fk_intervention_id, label, qty etc ... (cf. le contenu des lignes).\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "610502",
@@ -636,6 +659,7 @@
       "kind": "read",
       "group": "Contrat",
       "name": "Contrat READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#0e7593e0-6961-4d26-8f7c-26a49f4fcb4d",
       "description": "Permet de chercher les contrats par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les résultats.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -653,6 +677,7 @@
       "kind": "read",
       "group": "Contrat",
       "name": "Contrat READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6686bebe-61bd-47f6-8e10-7c0052aa18b0",
       "description": "Permet de lire les informations de une ou plusieurs contrats. L'identifiant ( ids ) permet de sélectionner les éléments via leur identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "77134,77129,71561"
@@ -667,6 +692,7 @@
       "kind": "update",
       "group": "Contrat",
       "name": "Contrat UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#01ec8010-8a60-466d-8eec-a92c8bb7ea87",
       "description": "Il est possible de modifier un contrat. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.",
       "sample": {
         "id": "375222",
@@ -693,6 +719,7 @@
       "kind": "delete",
       "group": "Contrat",
       "name": "Contrat DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9457e65b-f720-4dc0-afa1-24c604e1a350",
       "description": "Il est possible de supprimer un contrat. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être supprimé.",
       "sample": {
         "id": "375222"
@@ -707,6 +734,7 @@
       "kind": "create",
       "group": "Equipement",
       "name": "Equipement CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#a0dd15e3-85c2-4857-b755-2e7879465180",
       "description": "Il est possible d'ajouter un équipement sur Organilog en suivant le descriptif de cette API. Le seul élément obligatoire est le fk_adresse_id (id de l'adresse) associée à cet équipement.",
       "sample": {
         "data": {
@@ -736,6 +764,7 @@
       "kind": "read",
       "group": "Equipement",
       "name": "Equipement READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9f7bf495-e39f-4401-9f58-bf0fbd600a87",
       "description": "Permet de lire les informations d'un équipement.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "2083034",
@@ -751,6 +780,7 @@
       "kind": "read",
       "group": "Equipement",
       "name": "Equipement READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#973d4355-d479-4a06-bac0-49d001f48d6a",
       "description": "Permet de chercher les équipements par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les équipements.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -768,6 +798,7 @@
       "kind": "read",
       "group": "Equipement",
       "name": "Equipement READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#db962cbb-f28c-48b8-a3d0-d9fdaddf5434",
       "description": "Permet de lire les informations de une ou plusieurs équipements. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "ids": "418131,378986,301547"
@@ -782,6 +813,7 @@
       "kind": "update",
       "group": "Equipement",
       "name": "Equipement UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#808f1a73-292e-434f-8195-fb73efbea728",
       "description": "Il est possible de modifier un équipement. Il est nécessaire de compléter le champ id pour spécifier l'équipement qui doit être modifié.",
       "sample": {
         "id": "2337518",
@@ -812,6 +844,7 @@
       "kind": "delete",
       "group": "Equipement",
       "name": "Equipement DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#ee480709-a710-4f55-a037-afcc13521260",
       "description": "Il est possible de supprimer un équipement. Il est nécessaire de compléter le champ id pour spécifier l'équipement qui doit être supprimé.",
       "sample": {
         "id": "111142"
@@ -826,6 +859,7 @@
       "kind": "create",
       "group": "EquipementCategory",
       "name": "EquipementCategory CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#a067e295-80f9-4969-b3a2-89f1fe0eeb1f",
       "description": "Il est possible d'ajouter une catégorie d'équipement sur Organilog en suivant le descriptif de cette API. Le seul élément obligatoire est le nom (libellé de la catégorie).",
       "sample": {
         "data": {
@@ -843,6 +877,7 @@
       "kind": "read",
       "group": "EquipementCategory",
       "name": "EquipementCategory READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#0a5afc38-aab9-4aaa-bea3-e0ce48514d59",
       "description": "Permet de lire les informations d'une catégorie d'équipement.\nL'identifiant uniquement ( id ) doit être envoyé.",
       "sample": {
         "id": "16865"
@@ -857,6 +892,7 @@
       "kind": "read",
       "group": "EquipementCategory",
       "name": "EquipementCategory READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6561a61c-f8a4-4aaa-a457-822cb3f7b4b6",
       "description": "Permet de chercher les catégories d'équipements par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les équipements.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -874,6 +910,7 @@
       "kind": "read",
       "group": "EquipementCategory",
       "name": "EquipementCategory READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#2c6b3313-18de-4723-9250-de2409ae94b0",
       "description": "Permet de lire les informations de une ou plusieurs catégories équipements. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "16865,1879"
@@ -888,6 +925,7 @@
       "kind": "update",
       "group": "EquipementCategory",
       "name": "EquipementCategory UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#316d5f57-3731-4a4f-9690-634b8152eda3",
       "description": "Il est possible de modifier une catégorie d'équipement. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.",
       "sample": {
         "id": "16865",
@@ -906,6 +944,7 @@
       "kind": "delete",
       "group": "EquipementCategory",
       "name": "EquipementCategory DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#05bc86e9-9f80-4944-a911-77e591fce0e5",
       "description": "Il est possible de supprimer une catégorie d'équipement. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être supprimé.",
       "sample": {
         "id": "16865"
@@ -920,6 +959,7 @@
       "kind": "create",
       "group": "Intervention",
       "name": "Intervention CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#761e114c-b66a-4188-ac09-65b3104dabd8",
       "description": "Il est possible d'ajouter une intervention sur Organilog en suivant le descriptif de cette API.\nLe seul élément obligatoire est le fk_adresse_id (id de l'adresse) associée à cette intervention.\nRemarque : ce champ peut être ignoré et remplacé par fk_adresse_code_id (n° Organilog de l'adresse).",
       "sample": {
         "data": {
@@ -959,6 +999,7 @@
       "kind": "read",
       "group": "Intervention",
       "name": "Intervention READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#915acc5f-79ad-4dbf-9a8a-8c6caa15f39c",
       "description": "Permet de lire les informations d'une intervention.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.\nLe paramètre include_client permet d'obtenir les informations du client.\nLe paramètre include_address permet d'obtenir les informations de l'adresse.\nLe paramètre include_contact permet d'obtenir les informations du contact (si applicable).\nLe paramètre include_children permet d'obtenir la liste des potentielles interventions enfants (cf. dans le cas d'une intervention multi-intervenants).\nLe paramètre include_medias permet d'obtenir la liste des pièces jointes liées à cette intervention.\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cette intervention.\nLe paramètre include_cerfa15497 permet d'obtenir la liste des Cerfa 15497 (Fluides frigorigènes) disponibles pour cette intervention.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de cette intervention.",
       "sample": {
         "id": "34629761",
@@ -982,6 +1023,7 @@
       "kind": "read",
       "group": "Intervention",
       "name": "Intervention READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#ecffa661-66e7-46ae-b5e5-d058cd1ac0cb",
       "description": "Permet de chercher les interventions par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir toutes les interventions.\nLe paramètre fk_group_id est facultatif et permet de filtrer les interventions liés à un groupe d'interventions.\nLe paramètre title est facultatif et permet de filtrer les interventions selon le contenu textuel du titre.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cette intervention.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de cette intervention.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -1002,6 +1044,7 @@
       "kind": "read",
       "group": "Intervention",
       "name": "Intervention READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#26544d3d-b0ef-49a3-ac2b-9995e2c3cb4d",
       "description": "Permet de lire les informations de une ou plusieurs interventions. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cette intervention.\nLe paramètre include_cerfa15497 permet d'obtenir la liste des Cerfa 15497 (Fluides frigorigènes) disponibles pour cette intervention.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de cette intervention.",
       "sample": {
         "ids": "6315649,6315379,6299019",
@@ -1019,6 +1062,7 @@
       "kind": "read",
       "group": "Intervention",
       "name": "Intervention SEARCH",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#103caac7-b946-43ca-a48a-1cf0514d45fa",
       "description": "Permet de chercher les interventions par groupe de 20 interventions.\nLe paramètre \" date_from \" permet de définir à la date minimale à partir de laquelle chercher.\nLe paramètre \" date_to \" permet de définir à la date maximale à partir de laquelle chercher.\nInformation : les paramètres de date se basent soit sur la date planifié ou la date effectuée, selon le statut de l'intervention.\nLe paramètre \" fk_user_id \" est facultatif et permet de chercher uniquement les interventions associées à un utilisateur, à partir de son id.\nLe paramètre fk_group_id est facultatif et permet de filtrer les interventions liés à un groupe d'interventions.\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nUne pagination est nécessaire, via le paramètre page_nbr , pour obtenir toutes les interventions.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "date_from": "2020-10-17",
@@ -1037,6 +1081,7 @@
       "kind": "update",
       "group": "Intervention",
       "name": "Intervention UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#fbf3afbd-a84c-4295-a8bf-1315f7ad8712",
       "description": "Il est possible de modifier une intervention. Il est nécessaire de compléter le champ id pour spécifier l'intervention qui doit être modifié.",
       "sample": {
         "id": "8062542",
@@ -1077,6 +1122,7 @@
       "kind": "delete",
       "group": "Intervention",
       "name": "Intervention DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#faca6a32-2825-4b66-86d2-394997031cbf",
       "description": "Il est possible de supprimer une intervention. Il est nécessaire de compléter le champ id pour spécifier l'intervention qui doit être supprimé.",
       "sample": {
         "id": "187266"
@@ -1091,6 +1137,7 @@
       "kind": "create",
       "group": "InterventionProduct",
       "name": "InterventionProduct CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#62f71f0b-09a9-4a9b-8720-0e9f48840bc8",
       "description": "Il est possible d'ajouter un produit sur une intervention sur Organilog en suivant le descriptif de cette API. Le champ obligatoire est le fk_intervention_id (id de l'intervention).\nLe champ fk_product_id (id du produit) est facultatif et permet de lier à un produit existant dans la base.\nLe champ label permet de personnaliser l'intitulé de la ligne (non utilisable si le champ fk_product_id est utilisé)\nLe champ perc_discount (facultatif) défini une potentielle réduction en pourcentage.\nLe champ pu_ht défini le montant unitaire hors taxe.\nLe champ tx_tva défini le taux de TVA (exemple \"20\" pour une taxe de 20%).\nLe champ quantity (autorise les chiffres à virgules) défini la quantité.\nLe champ position défini un ordre d'affichage grâce à un numéro (exemple : \"1\", puis \"2\", puis \"3\" ...).\nRemarque : le montant unitaire TTC sera automatiquement calculé à partir du montant HT et du taux de TVA.",
       "sample": {
         "data": {
@@ -1114,6 +1161,7 @@
       "kind": "read",
       "group": "InterventionProduct",
       "name": "InterventionProduct READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9c390ea5-83a7-4b98-ab24-4950fce07168",
       "description": "Permet de chercher les liaisons entre interventions et produits par groupe de 50 éléments. Les ajouts de produits non reliés à une fiche produit, sont également retourné. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir toutes les interventions.\nLe paramètre fk_intervention_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'une intervention.\nLe paramètre fk_product_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'un produit.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "fk_intervention_id": "0",
@@ -1133,6 +1181,7 @@
       "kind": "update",
       "group": "InterventionProduct",
       "name": "InterventionProduct UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#f09415ab-c22a-4427-a6e1-b70b02c0ee55",
       "description": "Il est possible de modifier un produit sur une intervention. Il est nécessaire de compléter le champ id pour spécifier l'identifiant qui spécifie la liaison qui doit être modifiée.",
       "sample": {
         "id": "1093619",
@@ -1157,6 +1206,7 @@
       "kind": "delete",
       "group": "InterventionProduct",
       "name": "InterventionProduct DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#a10f76bf-da0d-4c09-bfbf-adfe72b29b9e",
       "description": "Il est possible de supprimer un produit sur une intervention. Il est nécessaire de compléter le champ id pour spécifier l'identifiant de la liaison qui doit être supprimée.",
       "sample": {
         "id": "1093624"
@@ -1171,6 +1221,7 @@
       "kind": "create",
       "group": "InterventionEquipement",
       "name": "InterventionEquipement CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#4795c300-3120-42be-b4fd-b862dffa9bc8",
       "description": "Il est possible d'ajouter un équipement sur une intervention sur Organilog en suivant le descriptif de cette API.\nLes champs obligatoires sont le fk_intervention_id (id de l'intervention) ET le champ fk_equipement_id (id du produit).\nRemarque : il convient de ne pas ré-envoyer une liaison si elle existe déjà.",
       "sample": {
         "data": {
@@ -1188,6 +1239,7 @@
       "kind": "read",
       "group": "InterventionEquipement",
       "name": "InterventionEquipement READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9fd68d3b-d75d-44bd-8928-6e4b6b01f6ca",
       "description": "Permet de chercher les liaisons entre interventions et équipements par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les résultats.\nLe paramètre fk_intervention_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'une intervention.\nLe paramètre fk_equipement_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'un équipement.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "fk_intervention_id": "0",
@@ -1207,6 +1259,7 @@
       "kind": "delete",
       "group": "InterventionEquipement",
       "name": "InterventionEquipement DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#ba3e63d1-6b2d-4a02-a703-804bf7820980",
       "description": "Il est possible de supprimer un équipement sur une intervention. Il est nécessaire de compléter le champ id pour spécifier l'identifiant de la liaison qui doit être supprimée.",
       "sample": {
         "id": "22779802"
@@ -1221,6 +1274,7 @@
       "kind": "create",
       "group": "InterventionGroup (Chantier)",
       "name": "InterventionGroup CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#7e711eaa-2944-439a-a4fa-5116a43706d3",
       "description": "Il est possible d'ajouter un groupe d'interventions (cf. un chantier) sur Organilog en suivant le descriptif de cette API. Le seul élément obligatoire est le fk_adresse_id (id de l'adresse) associée à cette intervention.",
       "sample": {
         "data": {
@@ -1244,6 +1298,7 @@
       "kind": "read",
       "group": "InterventionGroup (Chantier)",
       "name": "InterventionGroup READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#e89831d3-1e38-4495-ac8e-237cee338063",
       "description": "Permet de lire les informations d'un groupe d'interventions (cf. un chantier).\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "7186",
@@ -1259,6 +1314,7 @@
       "kind": "read",
       "group": "InterventionGroup (Chantier)",
       "name": "InterventionGroup READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#ec6240ab-a212-4c2c-9534-60731e0a696d",
       "description": "Permet de chercher les groupes d'interventions (cf. les chantiers) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les groupes d'interventions.\nLe paramètre fk_client_id est facultatif et permet de filtrer les groupes d'interventions liés à un client.\nLe paramètre fk_contact_id est facultatif et permet de filtrer les groupes d'interventions liés à un contact.\nLe paramètre title est facultatif et permet de filtrer les groupes d'interventions selon le contenu textuel du titre.\nLe paramètre is_closed est facultatif et permet de filtrer les groupes d'interventions selon qu'ils soient ouverts ou terminés. Le champ peut recevoir 3 valeurs :\n(champ vide) = tous les résultats\n\"0\" = uniquement les groupes d'interventions ouverts\n\"1\" = uniquement les groupes d'interventions terminés\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "fk_client_id": "0",
@@ -1280,6 +1336,7 @@
       "kind": "read",
       "group": "InterventionGroup (Chantier)",
       "name": "InterventionGroup READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#4a2b34d2-04ff-4062-bea5-08db8e0f0175",
       "description": "Permet de lire les informations de une ou plusieurs chantiers. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "ids": "144653,144258,144253"
@@ -1294,6 +1351,7 @@
       "kind": "update",
       "group": "InterventionGroup (Chantier)",
       "name": "InterventionGroup UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6b191655-52c6-4d14-88e0-a124c536a0fd",
       "description": "Il est possible de modifier un groupe d'interventions (cf. un chantier). Il est nécessaire de compléter le champ id pour spécifier le groupe d'interventions (cf. un chantier) qui doit être modifié.",
       "sample": {
         "id": "345947",
@@ -1318,6 +1376,7 @@
       "kind": "delete",
       "group": "InterventionGroup (Chantier)",
       "name": "InterventionGroup DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#87e17f42-262b-4859-a710-693e3d35cff9",
       "description": "Il est possible de supprimer un groupe d'interventions (cf. un chantier). Il est nécessaire de compléter le champ id pour spécifier le groupe d'interventions (cf. un chantier) qui doit être supprimé.",
       "sample": {
         "id": "7186"
@@ -1332,6 +1391,7 @@
       "kind": "create",
       "group": "InterventionTicket",
       "name": "InterventionTicket CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#cebd31da-c094-49ce-b654-c4ab85180d43",
       "description": "Il est possible d'ajouter un ticket sur une intervention sur Organilog en suivant le descriptif de cette API.\nLes champs obligatoires sont le fk_intervention_id (id de l'intervention) ET le champ fk_issue_id (id du produit).\nRemarque : il convient de ne pas ré-envoyer une liaison si elle existe déjà.",
       "sample": {
         "data": {
@@ -1349,6 +1409,7 @@
       "kind": "read",
       "group": "InterventionTicket",
       "name": "InterventionTicket READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#e2ec28b2-90c2-49da-ad3f-0ed43b8aed8b",
       "description": "Permet de chercher les liaisons entre interventions et tickets par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les résultats.\nLe paramètre fk_intervention_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'une intervention.\nLe paramètre fk_issue_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'un ticket.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.",
       "sample": {
         "last_datetime": "2016-02-10 12:00",
@@ -1365,6 +1426,7 @@
       "kind": "delete",
       "group": "InterventionTicket",
       "name": "InterventionTicket DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#d0af626d-715d-4d95-91b1-12e505f4cb25",
       "description": "Il est possible de supprimer un ticket sur une intervention. Il est nécessaire de compléter le champ id pour spécifier l'identifiant de la liaison qui doit être supprimée.",
       "sample": {
         "id": "8493161"
@@ -1379,6 +1441,7 @@
       "kind": "create",
       "group": "InvoicingQuote (Devis)",
       "name": "InvoicingQuote CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b6a733c5-1e5b-4123-9f25-5913cd509832",
       "description": "Il est possible d'ajouter un devis sur Organilog en suivant le descriptif de cette API. L'élément obligatoire est fk_adresse_id (id de l'adresse) associée à ce devis.\nLe champ rows permet d'ajouter plusieurs ligne, l'une à la suite de l'autre.\nAu sein des lignes du devis : le champ line_type permet de définir le type de ligne (0=produit ; 1=titre ; 2=commentaire ; 3=saut de page ; 4=sous-total ; 5=option ; 6=image).",
       "sample": {
         "data": {
@@ -1493,6 +1556,7 @@
       "kind": "read",
       "group": "InvoicingQuote (Devis)",
       "name": "InvoicingQuote READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#836df3bf-a22a-49e8-ac34-67e63ba6ed48",
       "description": "Permet de lire les informations d'un devis. L'identifiant uniquement ( id ) du devis doit être envoyé.\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.\nLe paramètre include_pdf permet d'obtenir l'URL du PDF. L'URL fournit peut être un code HTTP 200 et ouvrir un PDF, ou être un code HTTP 301 et rediriger vers une autre URL qui ouvre un PDF (cela dépend du modèle PDF associé à l'élément).\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cet élément.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de cette intervention.\nLe paramètre include_existing_catalog_product_details permet d'insérer dans les lignes de la facture (cf. dans l'objet \"invoice_items\"), un sous array nommé \"catalog_details\" contenant le détail du catalogue du produit si la liaison existe entre une ligne du devis et le produit dans le catalogue (peut être utile pour connaitre le code analytique par exemple)",
       "sample": {
         "id": "1851164",
@@ -1510,6 +1574,7 @@
       "kind": "read",
       "group": "InvoicingQuote (Devis)",
       "name": "InvoicingQuote READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#463750e3-ad08-437b-92d6-70cbb793ab34",
       "description": "Permet de chercher les devis par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les devis.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLes paramètres \" date_from \" (optionnel) et \" date_to \" (optionnel) permettent de retourner uniquement les éléments dont la date du document est comprise entre ses dates (format AAAA-MM-JJ). Ces paramètres sont distincts de \" last_datetime \" car la date de création n'est pas nécessairement la date du document.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre \" fk_filiale_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un type d'activité (terminologie pouvant être \"Société\" ou \"Agence\" selon le compte).\nLe paramètre \" fk_contrat_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un contrat.\nLe paramètre \" is_export \" (optionnel) permet de retourner uniquement les éléments déjà exportés ou non. Les valeurs possibles sont [vide] (aucun filtre), \"0\" ou \"1\". Il peut être nécessaire d'utiliser le endpoint UPDATE afin de modifier la valeur après avoir exporté (s'il y a un souhait d'utiliser ce filtre).\nLe paramètre \" is_lock \" (optionnel) permet de retourner uniquement les éléments déjà verouillés ou non. Les valeurs possibles sont [vide] (aucun filtre), \"0\" (uniquement éléments non verouillés) ou \"1\" (uniquement les éléments verouillés).\nLe paramètre \" is_draft \" (optionnel) permet de retourner uniquement les éléments en brouillon ou pas en brouillon Les valeurs possibles sont [vide] (aucun filtre), \"0\" (pas brouillon) ou \"1\" (brouillon).\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cet élément.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de cette intervention.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -1532,6 +1597,7 @@
       "kind": "read",
       "group": "InvoicingQuote (Devis)",
       "name": "InvoicingQuote READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#202bdb60-7347-4fab-a76b-bc4ed05fd177",
       "description": "Permet de lire les informations de une ou plusieurs devis. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cet élément.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de cette intervention.",
       "sample": {
         "ids": "1894795,1894790,1894785",
@@ -1548,12 +1614,14 @@
       "kind": "update",
       "group": "InvoicingQuote (Devis)",
       "name": "InvoicingQuote UPDATE",
-      "description": "Il est possible de modifier un élément. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.\nLe champ \" is_lock \" peut avoir uniquement la valeur \"1\". Il n'est pas possible de déverouiller. S'il n'y a pas la volonté de verrouiller, il est possible de ne pas lister ce champ au sein de \"data\".\nLe champ \" is_export \" peut avoir les valeurs \"0\" (non exporté) ou \"1\" (exporté).",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6313c232-a836-4287-8127-a69a9abec50a",
+      "description": "Il est possible de modifier un élément. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.\nLe champ \" is_lock \" peut avoir uniquement la valeur \"1\". Il n'est pas possible de déverouiller. S'il n'y a pas la volonté de verrouiller, il est possible de ne pas lister ce champ au sein de \"data\".\nLe champ \" is_export \" peut avoir les valeurs \"0\" (non exporté) ou \"1\" (exporté).\nLe champ \" status \" (facultatif) accepte les valeurs \"pending\", \"accepted\", \"rejected\" (en minuscule). Celui-ci n'est modifiable que is_draft = 0.",
       "sample": {
-        "id": "99999",
+        "id": "123456",
         "data": {
           "is_lock": "1",
-          "is_export": "1"
+          "is_export": "1",
+          "status": "accepted"
         }
       },
       "verified_live": false,
@@ -1566,6 +1634,7 @@
       "kind": "delete",
       "group": "InvoicingQuote (Devis)",
       "name": "InvoicingQuote DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#dae1e8b6-e216-4014-9232-688e28476ecb",
       "description": "Il est possible de supprimer un devis. Il est nécessaire de compléter le champ id pour spécifier le devis qui doit être supprimé.",
       "sample": {
         "id": "1853385"
@@ -1580,6 +1649,7 @@
       "kind": "read",
       "group": "InvoicingInvoice (Factures)",
       "name": "InvoicingInvoice READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#d0cb06ce-3229-48a8-af58-6c4600ea503b",
       "description": "Permet de lire les informations d'une facture. L'identifiant uniquement ( id ) de la facture doit être envoyé.\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.\nLe paramètre include_client_and_address permet d'obtenir les informations du client et de l'adresse associé à la facture (évite potentiellement d'effectuer des requêtes supplémentaires pour obtenir les informations du client/adresse).\nLe paramètre include_pdf permet d'obtenir l'URL du PDF. L'URL fournit peut être un code HTTP 200 et ouvrir un PDF, ou être un code HTTP 301 et rediriger vers une autre URL qui ouvre un PDF (cela dépend du modèle PDF associé à l'élément).\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cet élément.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de cette intervention.\nLe paramètre include_existing_catalog_product_details permet d'insérer dans les lignes de la facture (cf. dans l'objet \"invoice_items\"), un sous array nommé \"catalog_details\" contenant le détail du catalogue du produit si la liaison existe entre une ligne de la facture et le produit dans le catalogue (peut être utile pour connaitre le code analytique par exemple)\nDétails des champs :\nnum_invoice : N° de la facture (vide si brouillon)\nfk_client_id : clé étrangère du client\nfk_adresse_id : clé étrangère de l'adresse\nfk_adresse_intervention_id : clé étrangère de l'adresse d'intervention\nfk_contact_id : clé étrangère d'un interlocuteur spécifique (contact)\nfk_user_id : clé étrangère du vendeur associé à la facture\nfk_filiale_id : clé étrangère du type d'activité (ou agence) associé\ndate : date de la facture (format AAAA-MM-JJ)\ndate_due : date limite de paiement\nreference : texte alphanumérique d'une éventuelle référence\nshow_discount_in_column : défini si une colonne \"réduction (%)\" est active (0=non ; 1=oui)\nis_send : 0=non envoyé ; 1=envoyé\nvalidate_date : date à laquelle la facture a été basculé en statut \"payé\"\nvalidate_fk_user_id : clé étrangère de l'utilisateur qui a basculé la facture en statut \"payé\"\nis_draft : 0=pas un brouillon ; 1=brouillon\nis_lock : 0=non verrouillé ; 1=verrouillé\nis_paid : 0=non payé (statut \"en cours\") ; 1=payé\nis_rejected : 0=non rejeté (statut \"en cours\" ou \"payé\") ; 1=impayé\nis_invoice : type de facture (1=Facture normal ; 2=Facture d'acompte ; 5=Avoir ; 6=Facture de situation)\ncache_pt_ht : prix total ht\ncache_pt_tax : prix total tva\ncache_pt_ttc_to_pay : prix total à payer\namount_paid : montant payé\ncomment_public : commentaire publique\ncomment_private : commentaire privé\nis_actif : 0=archivé ; 1=actif\ndeduction_amounts : montants à déduire. Cela peut concerner le reste à charge ou d'éventuelles primes (cf. prime CEE, prime Renov, prime EDF ...)\nvat_accounting : montant et compte comptable de la TVA\nprocessing_fees : frais de traitement\nlinked_invoices : liens avec des éléments de facturation liés (exemple : plusieurs factures d'acompte).\ninvoice_items : Tableau contenant les lignes\nstatus_invoice_details : (si applicable) informations liées aux factures de situation (applicable pour les factures de situation n°2, afin d'obtenir les informations de la facture de situation précédente)\nRemarques :\nUne facture en brouillon ne possède pas de n° de facture\nUne facture archivé peut tout de même être dans le plan comptable du moment qu'elle possède une numérotation\nChamps des lignes :\ntype : 0=produit ; 1=titre ; 2=commentaire ; 3=saut de page ; 4=sous-total ; 5=option (uniquement pour les devis) ; 6=image\nlabel = descriptif alphanumérique\nperc_discount = taux de réduction (%)\nperc_surcharge = taux de revalorisation (%)\nqty = quantité\npurchase_pu_ht = prix unitaire d'achat HT\npu_ht = prix unitaire de vente HT\npu_ttc = prix unitaire de vente TTC\npt_ht = prix total HT\npt_ttc = prix total TTC\ntax_rate = taux de TVA\ntax_amount = montant de TVA\nunit = champ texte de l'unité\naccounting_code = compte comptable du produit\nposition = champ numérique de la position de la ligne (pour afficher dans le bon ordre)",
       "sample": {
         "id": "9132272",
@@ -1598,6 +1668,7 @@
       "kind": "read",
       "group": "InvoicingInvoice (Factures)",
       "name": "InvoicingInvoice READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#93ad7c74-7c7a-4845-a57f-ea7c957ff637",
       "description": "Permet de chercher les factures par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir toutes les factures.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLes paramètres \" date_from \" (optionnel) et \" date_to \" (optionnel) permettent de retourner uniquement les éléments dont la date du document est comprise entre ses dates (format AAAA-MM-JJ). Ces paramètres sont distincts de \" last_datetime \" car la date de création n'est pas nécessairement la date du document.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre \" fk_filiale_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un type d'activité (terminologie pouvant être \"Société\" ou \"Agence\" selon le compte).\nLe paramètre \" fk_contrat_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un contrat.\nLe paramètre \" is_export \" (optionnel) permet de retourner uniquement les éléments déjà exportés ou non. Les valeurs possibles sont [vide] (aucun filtre), \"0\" ou \"1\". Il peut être nécessaire d'utiliser le endpoint UPDATE afin de modifier la valeur après avoir exporté (s'il y a un souhait d'utiliser ce filtre).\nLe paramètre \" is_lock \" (optionnel) permet de retourner uniquement les éléments déjà verouillés ou non. Les valeurs possibles sont [vide] (aucun filtre), \"0\" (uniquement éléments non verouillés) ou \"1\" (uniquement les éléments verouillés).\nLe paramètre \" is_draft \" (optionnel) permet de retourner uniquement les éléments en brouillon ou pas en brouillon Les valeurs possibles sont [vide] (aucun filtre), \"0\" (pas brouillon) ou \"1\" (brouillon).\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour la facture.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de la facture.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -1620,6 +1691,7 @@
       "kind": "read",
       "group": "InvoicingInvoice (Factures)",
       "name": "InvoicingInvoice READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#4fe488e1-a08f-4e92-a295-3a05af6ef95b",
       "description": "Permet de lire les informations de une ou plusieurs factures. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cette facture.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de la facture.",
       "sample": {
         "ids": "1905344,1899694,1895049",
@@ -1636,12 +1708,14 @@
       "kind": "update",
       "group": "InvoicingInvoice (Factures)",
       "name": "InvoicingInvoice UPDATE",
-      "description": "Il est possible de modifier un élément. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.\nLe champ \" is_lock \" peut avoir uniquement la valeur \"1\". Il n'est pas possible de déverouiller. S'il n'y a pas la volonté de verrouiller, il est possible de ne pas lister ce champ au sein de \"data\".\nLe champ \" is_export \" peut avoir les valeurs \"0\" (non exporté) ou \"1\" (exporté).",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#e1730617-55b7-40d5-9e96-ce7a6fe4f598",
+      "description": "Il est possible de modifier un élément. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.\nLe champ \" is_lock \" peut avoir uniquement la valeur \"1\". Il n'est pas possible de déverouiller. S'il n'y a pas la volonté de verrouiller, il est possible de ne pas lister ce champ au sein de \"data\".\nLe champ \" is_export \" peut avoir les valeurs \"0\" (non exporté) ou \"1\" (exporté).\nLe champ \" status \" (facultatif) accepte les valeurs \"pending\", \"paid\", \"unpaid\" (en minuscule). Celui-ci n'est modifiable que is_draft = 0.",
       "sample": {
-        "id": "99999",
+        "id": "123456",
         "data": {
           "is_lock": "1",
-          "is_export": "1"
+          "is_export": "1",
+          "status": "paid"
         }
       },
       "verified_live": false,
@@ -1654,6 +1728,7 @@
       "kind": "read",
       "group": "InvoicingCreditNote (Avoirs)",
       "name": "InvoicingCreditNote READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#2ab948b7-33b0-477b-8066-c6249f434af3",
       "description": "Permet de lire les informations d'un avoir. L'identifiant uniquement ( id ) de l'avoir doit être envoyé.\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.\nLe paramètre include_pdf permet d'obtenir l'URL du PDF. L'URL fournit peut être un code HTTP 200 et ouvrir un PDF, ou être un code HTTP 301 et rediriger vers une autre URL qui ouvre un PDF (cela dépend du modèle PDF associé à l'élément).\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cet avoir.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de l'avoir.\nLe paramètre include_existing_catalog_product_details permet d'insérer dans les lignes de la facture (cf. dans l'objet \"invoice_items\"), un sous array nommé \"catalog_details\" contenant le détail du catalogue du produit si la liaison existe entre une ligne de l'avoir et le produit dans le catalogue (peut être utile pour connaitre le code analytique par exemple)",
       "sample": {
         "id": "4318071",
@@ -1671,6 +1746,7 @@
       "kind": "read",
       "group": "InvoicingCreditNote (Avoirs)",
       "name": "InvoicingCreditNote READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6ea357d9-5e6b-475c-93db-b8f706d1158b",
       "description": "Permet de chercher les avoirs (cf. parfois appelé \"note de crédit\") par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les avoirs.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLes paramètres \" date_from \" (optionnel) et \" date_to \" (optionnel) permettent de retourner uniquement les éléments dont la date du document est comprise entre ses dates (format AAAA-MM-JJ). Ces paramètres sont distincts de \" last_datetime \" car la date de création n'est pas nécessairement la date du document.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre \" fk_filiale_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un type d'activité (terminologie pouvant être \"Société\" ou \"Agence\" selon le compte).\nLe paramètre \" fk_contrat_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un contrat.\nLe paramètre \" is_export \" (optionnel) permet de retourner uniquement les éléments déjà exportés ou non. Les valeurs possibles sont [vide] (aucun filtre), \"0\" ou \"1\". Il peut être nécessaire d'utiliser le endpoint UPDATE afin de modifier la valeur après avoir exporté (s'il y a un souhait d'utiliser ce filtre).\nLe paramètre \" is_lock \" (optionnel) permet de retourner uniquement les éléments déjà verouillés ou non. Les valeurs possibles sont [vide] (aucun filtre), \"0\" (uniquement éléments non verouillés) ou \"1\" (uniquement les éléments verouillés).\nLe paramètre \" is_draft \" (optionnel) permet de retourner uniquement les éléments en brouillon ou pas en brouillon Les valeurs possibles sont [vide] (aucun filtre), \"0\" (pas brouillon) ou \"1\" (brouillon).\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cet avoir.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de l'avoir.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -1693,6 +1769,7 @@
       "kind": "read",
       "group": "InvoicingCreditNote (Avoirs)",
       "name": "InvoicingCreditNote READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#add6f4bc-cc99-4b50-b6d7-9a772dbb6902",
       "description": "Permet de lire les informations de un ou plusieurs avoirs. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre include_report permet d'obtenir la liste des rapport PDF personnalisés disponibles pour cet avoir.\nLe paramètre include_public_page permet d'obtenir l'URL de la page publique de l'avoir.",
       "sample": {
         "ids": "4318071,2916777,1829439",
@@ -1709,6 +1786,7 @@
       "kind": "update",
       "group": "InvoicingCreditNote (Avoirs)",
       "name": "InvoicingCreditNote UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b2fd79d3-b20d-437b-8649-7452e1e78190",
       "description": "Il est possible de modifier un élément. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.\nLe champ \" is_lock \" peut avoir uniquement la valeur \"1\". Il n'est pas possible de déverouiller. S'il n'y a pas la volonté de verrouiller, il est possible de ne pas lister ce champ au sein de \"data\".\nLe champ \" is_export \" peut avoir les valeurs \"0\" (non exporté) ou \"1\" (exporté).",
       "sample": {
         "id": "99999",
@@ -1727,6 +1805,7 @@
       "kind": "read",
       "group": "InvoiceLink",
       "name": "InvoiceLink READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#1ca142d6-e5a1-429d-bf1f-d8056ebadd1b",
       "description": "Permet de lire les liaisons à partir d'un élément devis/facture. L'identifiant uniquement ( id ) du devis/facture doit être envoyé.\nDétail de retour :\n\" link_table_name \" : indique le module concerné par la liaison (exemple \"intervention\", \"issue\", \"invoice\" ...)\n\" fk_column_id \" : indique l'ID de l'élément lié. En se basant sur le module ET cette colonne, il est possible de savoir s'il s'agit de l'ID d'une intervention, l'ID d'une facture ...\n\" invoice_type \" : lorsque \"link_table_name\" est \"invoice\", cela signifie qu'il s'agit d'un élément du module \"Facturation\". Cela peut être un devis, une facture, un avoir, une facture proforma etc ... Ce champ \"invoice_type\" permet de spécifier à quel type de document il s'agit.",
       "sample": {
         "id": "4566453"
@@ -1741,7 +1820,8 @@
       "kind": "create",
       "group": "Product",
       "name": "Product CREATE",
-      "description": "Il est possible d'ajouter un produit sur Organilog en suivant le descriptif de cette API.",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b0b6f0d8-6898-4a40-bae8-973dc6f8de57",
+      "description": "Il est possible d'ajouter un produit sur Organilog en suivant le descriptif de cette API.\nCorrespondance pour le champ type : \"0\" (Non défini), \"1\" (Fourniture), \"2\" (Matériel), \"3\" (Main d'oeuvre), \"4\" (Sous-traitance ou location), \"5\" (Divers).",
       "sample": {
         "data": {
           "nom": "Nom de l'article",
@@ -1763,6 +1843,7 @@
           "qty": "54",
           "qty_min_alert": "10",
           "unit": "",
+          "type": "2",
           "is_unlimited": "0",
           "is_qty_restricted": "0",
           "is_package": "0",
@@ -1781,7 +1862,8 @@
       "kind": "read",
       "group": "Product",
       "name": "Product READ ONE",
-      "description": "Permet de lire les informations d'un produit.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre \" include_category \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur la catégorie.\nLe paramètre \" include_supplier \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur le fournisseur.\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#c68deadf-4515-4902-be41-2d1d30c5e76b",
+      "description": "Permet de lire les informations d'un produit.\nCorrespondance pour le champ type : \"0\" (Non défini), \"1\" (Fourniture), \"2\" (Matériel), \"3\" (Main d'oeuvre), \"4\" (Sous-traitance ou location), \"5\" (Divers).\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre \" include_category \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur la catégorie.\nLe paramètre \" include_supplier \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur le fournisseur.\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "812531",
         "include_category": "0",
@@ -1798,7 +1880,8 @@
       "kind": "read",
       "group": "Product",
       "name": "Product READ ALL",
-      "description": "Permet de chercher les produits (cf. les articles) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les produits.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre \" include_category \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur la catégorie.\nLe paramètre \" include_supplier \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur le fournisseur.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#3ae06180-0ba0-49d9-a24a-25a714a4b8d3",
+      "description": "Permet de chercher les produits (cf. les articles) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les produits.\nCorrespondance pour le champ type : \"0\" (Non défini), \"1\" (Fourniture), \"2\" (Matériel), \"3\" (Main d'oeuvre), \"4\" (Sous-traitance ou location), \"5\" (Divers).\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre \" include_category \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur la catégorie.\nLe paramètre \" include_supplier \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur le fournisseur.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
         "include_category": "0",
@@ -1817,7 +1900,8 @@
       "kind": "read",
       "group": "Product",
       "name": "Product READ MULTIPLE",
-      "description": "Permet de lire les informations de une ou plusieurs produits. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments.\nLe paramètre \" include_category \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur la catégorie.\nLe paramètre \" include_supplier \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur le fournisseur.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#7a207575-4d6d-4995-a8e5-f9c7d4c06538",
+      "description": "Permet de lire les informations de une ou plusieurs produits. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments.\nCorrespondance pour le champ type : \"0\" (Non défini), \"1\" (Fourniture), \"2\" (Matériel), \"3\" (Main d'oeuvre), \"4\" (Sous-traitance ou location), \"5\" (Divers).\nLe paramètre \" include_category \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur la catégorie.\nLe paramètre \" include_supplier \" (valeur \"0\" ou \"1\") est facultatif. S'il est à \"1\" alors les résultats contiendrons les informations sur le fournisseur.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "2225370,2220245,2218888",
         "include_category": "0",
@@ -1833,7 +1917,8 @@
       "kind": "update",
       "group": "Product",
       "name": "Product UPDATE",
-      "description": "Il est possible de modifier un produit. Il est nécessaire de compléter le champ id pour spécifier le produit qui doit être modifié.",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#73a523fa-0c40-43a7-9dba-817aaa6de661",
+      "description": "Il est possible de modifier un produit. Il est nécessaire de compléter le champ id pour spécifier le produit qui doit être modifié.\nCorrespondance pour le champ type : \"0\" (Non défini), \"1\" (Fourniture), \"2\" (Matériel), \"3\" (Main d'oeuvre), \"4\" (Sous-traitance ou location), \"5\" (Divers).",
       "sample": {
         "id": "817827",
         "data": {
@@ -1856,6 +1941,7 @@
           "qty": "54",
           "qty_min_alert": "10",
           "unit": "",
+          "type": "2",
           "is_unlimited": "0",
           "is_qty_restricted": "0",
           "is_package": "0",
@@ -1874,6 +1960,7 @@
       "kind": "delete",
       "group": "Product",
       "name": "Product DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#82246885-ecd0-473b-a0f2-d389d308b673",
       "description": "Il est possible de supprimer un produit. Il est nécessaire de compléter le champ id pour spécifier le produit qui doit être supprimé.",
       "sample": {
         "id": "817827"
@@ -1888,6 +1975,7 @@
       "kind": "read",
       "group": "Ticket",
       "name": "Ticket READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#c53a0c6b-66d9-43b6-ad72-c6c7f7997748",
       "description": "Permet de lire les informations d'un ticket.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_category permet d'obtenir les informations de la catégorie.\nLe paramètre include_client_and_address permet d'obtenir les informations du client et de l'adresse associé (évite potentiellement d'effectuer des requêtes supplémentaires pour obtenir les informations du client/adresse).\nLe paramètre include_ccontact permet d'obtenir les informations du contact.\nLe paramètre include_filiale permet d'obtenir les informations du type d'activité (ou Agence, selon la terminologie utilisée).\nLe paramètre include_category permet d'obtenir les informations de la catégorie.\nLe paramètre include_origin permet d'obtenir les informations de la provenance.\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "include_category": "0",
@@ -1908,6 +1996,7 @@
       "kind": "read",
       "group": "Ticket",
       "name": "Ticket READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#3340a0ae-1c4f-4e27-b0ee-9f625c572576",
       "description": "Permet de chercher les tickets (cf. demandes clients) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les tickets.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -1925,6 +2014,7 @@
       "kind": "read",
       "group": "Ticket",
       "name": "Ticket READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#e47829e6-228e-4600-96a6-bf78c522d9e5",
       "description": "Permet de lire les informations de une ou plusieurs tickets. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "ids": "595523,595518,510725"
@@ -1939,6 +2029,7 @@
       "kind": "create",
       "group": "Ticket",
       "name": "Ticket CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#85bf9199-00ea-4a54-ac21-f7b9b530b57e",
       "description": "Il est possible d'ajouter un ticket sur Organilog en suivant le descriptif de cette API. Le seul élément obligatoire est le fk_adresse_id (id de l'adresse) associée à ce ticket.",
       "sample": {
         "data": {
@@ -1974,6 +2065,7 @@
       "kind": "update",
       "group": "Ticket",
       "name": "Ticket UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6dfe7805-2109-4ad1-b0b4-042977cdbcec",
       "description": "Il est possible de modifier un ticket. Il est nécessaire de compléter le champ id pour spécifier le ticket qui doit être modifié.",
       "sample": {
         "id": "99999",
@@ -2010,6 +2102,7 @@
       "kind": "delete",
       "group": "Ticket",
       "name": "Ticket DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#cc2b4103-e34f-4acd-b57d-468dca5e46a5",
       "description": "Il est possible de supprimer un ticket. Il est nécessaire de compléter le champ id pour spécifier le ticket qui doit être supprimé.",
       "sample": {
         "id": "9999"
@@ -2024,6 +2117,7 @@
       "kind": "read",
       "group": "TicketCategory",
       "name": "TicketCategory READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#468938d6-d792-4f2b-82fa-58af36bfee09",
       "description": "Permet de chercher les catégories de tickets (cf. demandes clients) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les tickets.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2012-02-10 12:00",
@@ -2041,6 +2135,7 @@
       "kind": "read",
       "group": "TicketOrigin",
       "name": "TicketOrigin READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#097080d2-35ec-40e9-bce5-8865782c8316",
       "description": "Permet de chercher les provenances de tickets (cf. demandes clients) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les tickets.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2012-02-10 12:00",
@@ -2058,6 +2153,7 @@
       "kind": "create",
       "group": "Tracking (Pointage)",
       "name": "Tracking CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#c3c0da74-fea1-44d1-8f1d-be0a03893b63",
       "description": "Il est possible d'ajouter un pointage sur Organilog en suivant le descriptif de cette API. L'identifiant de l'employé est facultatif fk_user_id (id de l'utilisateur).\nLa catégorie de pointage est facultative fk_item_id (id de la catégorie, tel que défini dans TrackingCategory READ ALL)",
       "sample": {
         "data": {
@@ -2077,6 +2173,7 @@
       "kind": "read",
       "group": "Tracking (Pointage)",
       "name": "Tracking READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#5ca3db4e-24e7-4cb5-ab82-5e1fafab0d10",
       "description": "Permet de lire les informations d'un pointage. L'identifiant uniquement ( id ) du produit doit être envoyé.",
       "sample": {
         "id": "3350468"
@@ -2091,6 +2188,7 @@
       "kind": "read",
       "group": "Tracking (Pointage)",
       "name": "Tracking READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#3b872670-a6ce-4fac-92dc-8b0e726bad1b",
       "description": "Permet de chercher les pointages par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les pointages.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre user_login permet de chercher uniquement les pointages d'un collaborateur à partir de son identifiant.\nLes paramètres date_from et date_to permettent de chercher sur une plage de date.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2017-02-10 12:00",
@@ -2111,6 +2209,7 @@
       "kind": "read",
       "group": "Tracking (Pointage)",
       "name": "TrackingCategory READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9f6e5e81-cd46-4fb9-b8e5-75c0f8460b5d",
       "description": "Permet de chercher les catégories de pointage par groupe de 20. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir toutes les catégories.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ), soit soit par tri dans l'interface (valeur sort ). L'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2128,6 +2227,7 @@
       "kind": "create",
       "group": "Universal Module",
       "name": "Universal Module CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#ced04d57-1a60-4ce8-853e-3e91c7fa667c",
       "description": "Il est possible d'ajouter un élément de n'importe quel module universel sur Organilog en suivant le descriptif de cette API.\nLe champ fk_module_id est obligatoire et doit correspondre à l'identifiant d'un module universel.\nL'identifiant de l'employé est facultatif fk_user_id (id de l'utilisateur).\nLes identifiants du client et de l'adresse sont facultatif fk_client_id (id du client) / fk_adresse_id (id de l'adresse).",
       "sample": {
         "data": {
@@ -2158,6 +2258,7 @@
       "kind": "read",
       "group": "Universal Module",
       "name": "Universal Module READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#711efe76-35b4-4cbc-827f-70b5fa05f3ad",
       "description": "Permet de lire les informations d'un élément au sein d'un module universel.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "351",
@@ -2173,6 +2274,7 @@
       "kind": "read",
       "group": "Universal Module",
       "name": "Universal Module READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#859589ad-67b9-41f0-91be-674c3a58a1fe",
       "description": "Permet de chercher les éléments des modules universels par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous ces éléments.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2190,6 +2292,7 @@
       "kind": "read",
       "group": "Universal Module",
       "name": "Universal Module READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#585841a2-bd90-4aeb-a836-e9aeb0658c55",
       "description": "Permet de lire les informations de un ou plusieurs éléments du module universel. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.",
       "sample": {
         "ids": "780,779,778"
@@ -2204,6 +2307,7 @@
       "kind": "update",
       "group": "Universal Module",
       "name": "Universal Module UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#88635870-1479-4e5a-9445-2557791305b2",
       "description": "Il est possible de modifier un élément du module universel. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.",
       "sample": {
         "id": "99999",
@@ -2235,6 +2339,7 @@
       "kind": "delete",
       "group": "Universal Module",
       "name": "Universal Module DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#cdadea32-ed5a-4456-83bf-fe8570240111",
       "description": "Il est possible de supprimer un élément. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être supprimé.",
       "sample": {
         "id": "9999"
@@ -2249,6 +2354,7 @@
       "kind": "create",
       "group": "Absence",
       "name": "Absence CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#3ea33450-2cee-458a-a0d9-c619fdcc4849",
       "description": "Il est possible d'ajouter une absence sur Organilog en suivant le descriptif de cette API. Les éléments obligatoires sont les suivants :\nfk_user_id : identifiant de l'utilisateur\ndate_start : date de début de l'absence au format YYYY-MM-DD\ndate_end : date de début de l'absence au format YYYY-MM-DD\nstatus : \"0\" = nouveau ; \"1\" = en attente ; \"2\" = validé ; \"3\" = refusé (valeur par défaut si non renseigné : \"2\")\nDétails de certains champs facultatifs :\nin_hour : la valeur à \"0\" signifie que l'absence est gérée en journée ou demi-journée (les champs date_start_type et date_end_type seront alors utilisés). La valeur à \"1\" signifie que l'absence est gérée en heure (les champs hour_start et hour_end seront alors utilisés).\ndate_start_type : lorsque l'absence est gérée en demi-journée, ce champ à \"1\" signifie que la date date de début inclus la matinée.\ndate_end_type : lorsque l'absence est gérée en demi-journée, ce champ à \"1\" signifie que la date date de fin inclus la matinée.",
       "sample": {
         "data": {
@@ -2277,6 +2383,7 @@
       "kind": "read",
       "group": "Absence",
       "name": "Absence READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#92d7b52a-a2b9-4f5f-8baf-43d73b741e21",
       "description": "Permet de lire les informations d'une absence.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.\nInformations sur les champs :\nin_hour : la valeur à \"0\" signifie que l'absence est gérée en journée ou demi-journée. La valeur à \"1\" signifie que l'absence est gérée en heure.\ndate_start_type : lorsque l'absence est gérée en demi-journée, ce champ à \"1\" signifie que la date date de début inclus la matinée.\ndate_end_type : lorsque l'absence est gérée en demi-journée, ce champ à \"1\" signifie que la date date de fin inclus la matinée.\nstatus : \"0\" = nouveau ; \"1\" = en attente ; \"2\" = validé ; \"3\" = refusé.",
       "sample": {
         "id": "174506",
@@ -2292,6 +2399,7 @@
       "kind": "read",
       "group": "Absence",
       "name": "Absence READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#4d7f6ee8-7721-481f-be0e-7f03a665c37e",
       "description": "Permet de chercher les absences par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir toutes les absences.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {},
       "verified_live": false,
@@ -2304,6 +2412,7 @@
       "kind": "read",
       "group": "Absence",
       "name": "Absence READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#176b88e4-a6f1-448a-8fe8-0b634ec6878a",
       "description": "Permet de lire les informations de une ou plusieurs absences. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre  is_actif  (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "174506,147811,107313"
@@ -2318,6 +2427,7 @@
       "kind": "update",
       "group": "Absence",
       "name": "Absence UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#f4f99692-289d-4120-8efe-2e7ec13eae87",
       "description": "Il est possible de modifier une absence. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.",
       "sample": {
         "id": "236189",
@@ -2347,6 +2457,7 @@
       "kind": "delete",
       "group": "Absence",
       "name": "Absence DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#eaf75a5c-c7de-40d0-9f8c-95aafb355f56",
       "description": "Il est possible de supprimer une absence. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être supprimé.",
       "sample": {
         "id": "107313"
@@ -2361,6 +2472,7 @@
       "kind": "create",
       "group": "Media",
       "name": "Media CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b84ccaf9-cc80-46fa-8d3f-7938fcab74ff",
       "description": "Il est possible d'ajouter un fichier sur Organilog en suivant le descriptif de cette API.\nDétails de certains champs :\nbase64 : représentation pure du fichier en base64 (attention, il ne faut donc pas débuter la chaîne de caratère avec data:content/type;base64 )\nfilename : nom du fichier\nadded_by_fk_user_id : l'identifiant (ID) de l'utilisateur qui ajoute le fichier\nlegend : texte de légende de ce fichier\nis_signature : valeur \"0\" ou \"1\" pour définir s'il s'agit d'une image d'une signature\nlink_to_table : valeur optionnel pour définir la liaison de ce fichier avec un élément existant. Les valeurs possibles sont : \"intervention\" / \"invoice\" / \"client\" / \"module_item\" (cf. module universel).\nFonctionne obligatoirement avec \"link_to_element_id\".\nlink_to_element_id : valeur optionnel, qui fonctionne avec le champ \"link_to_table\". S'il est utilisé, il convient de remplir l'identifiant (ID) de l'élément lié.",
       "sample": {
         "data": {
@@ -2383,6 +2495,7 @@
       "kind": "read",
       "group": "Media",
       "name": "Media READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#06aff9bd-2996-454d-8e4b-4a6bea97e67d",
       "description": "Permet de lire les informations d'un contrat.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .",
       "sample": {
         "id": "20881847"
@@ -2397,6 +2510,7 @@
       "kind": "read",
       "group": "Media",
       "name": "Media READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#72193383-11f0-4f65-96c1-9a83ae1b2468",
       "description": "Permet de chercher les fichiers par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les résultats.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2024-02-22 12:00",
@@ -2414,6 +2528,7 @@
       "kind": "read",
       "group": "Media",
       "name": "Media READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#2a47e7bf-275c-4e7f-957e-b29c70db4f5c",
       "description": "Permet de lire les informations de une ou plusieurs fichiers. L'identifiant ( ids ) permet de sélectionner les éléments via leur identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "20881847,20881272,20881267"
@@ -2428,6 +2543,7 @@
       "kind": "delete",
       "group": "Media",
       "name": "Media DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#895a9e5f-2828-4a8c-9342-1c06071aa8ed",
       "description": "Il est possible de supprimer un fichier. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être supprimé.",
       "sample": {
         "id": "20881272"
@@ -2442,6 +2558,7 @@
       "kind": "read",
       "group": "Filiale (Type d'activité)",
       "name": "Filiale READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#94816599-abb1-46d0-a11e-f0a6783176a0",
       "description": "Permet de chercher les types d'activité (parfois renommé \"Agence\" ou \"Filiale\") par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les résultats.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre \" fk_client_id \" (optionnel) permet de retourner uniquement les éléments liés à l'ID d'un client.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2459,6 +2576,7 @@
       "kind": "read",
       "group": "User",
       "name": "User READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#d903185d-ca23-46de-a114-6c429d970024",
       "description": "Permet de lire les informations d'un collaborateur.\nL'identifiant uniquement ( id ) du client doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .\nLe paramètre include_custom_fields permet d'obtenir la liste des champs personnalisés liés, incluant leur valeur.",
       "sample": {
         "id": "212880",
@@ -2474,6 +2592,7 @@
       "kind": "read",
       "group": "User",
       "name": "User READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#68257f20-2444-43a8-af7c-6fe6ac50676c",
       "description": "Permet de chercher les collaborateurs (utilisateurs) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les utilisateurs.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLes éléments retournés dont le nom du champ est un numéro correspond aux champs personnalisés associés à chaque utilisateur.\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2491,6 +2610,7 @@
       "kind": "read",
       "group": "User",
       "name": "User READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#65f28072-b2b1-4d08-8aa5-fab6718b92f4",
       "description": "Permet de lire les informations de une ou plusieurs collaborateurs. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre fk_filiale_id (optionnel) permet de filtrer pour obtenir uniquement les éléments appartenant à une filiale (cf. un Type d'Activité).\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "228692,223247,222777"
@@ -2505,6 +2625,7 @@
       "kind": "create",
       "group": "Response",
       "name": "Response CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#97729a01-81a2-4560-aac9-bd295fce0704",
       "description": "Il est possible d'ajouter une réponse au sein d'un ticket/chantier sur Organilog en suivant le descriptif de cette API.\nLe paramètre item_type est obligatoire, il permet de définir au sein de quel module la réponse doit être appliquée. Les valeurs possibles sont \"issue\" (ticket) ou \"intervention_group\" (chantier).\nLe paramètre fk_item_id est obligatoire, il permet de définir l'ID du ticket/chantier qui doit recevoir la réponse.\nLe paramètre message est le contenu du message.\nLe paramètre author_type permet de définir si l'auteur du message est un collaborateur du compte Organilog ou un client. Les valeurs possibles sont \"1\" (client) ou \"0\" (utilisateur du compte). La valeur par défaut est \"0\".\nLe paramètre is_private permet de définir si le message est public ou privé. Les valeurs possibles sont \"0\" (public) ou \"1\" (privé). Si la valeur n'est pas renseigné, ce champ sera rempli par le paramétrage qui défini la valeur par défaut;\nLe paramètre added_by_fk_user_id permet de définir l'ID de l'auteur du message (cf. si author_type est à \"0\").\nLe paramètre comment_private permet de définir un message privé en complément.",
       "sample": {
         "data": {
@@ -2527,6 +2648,7 @@
       "kind": "read",
       "group": "Response",
       "name": "Response READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#c361553a-3104-4c30-bd29-de41a6f2cdcc",
       "description": "Permet de chercher les réponses au sein de certains modules (cf. demandes clients, chantier) par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les tickets.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).\nLe paramètre item_type peut avoir 2 valeurs possibles \"issue\" (cf. ticket / demande client) ou \"intervention_group\" (cf. chantier).\nLe paramètre fk_item_id (optionnel) permet de filtrer pour obtenir uniquement les réponses d'un ticket/chantier spécifique.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2545,6 +2667,7 @@
       "kind": "update",
       "group": "Response",
       "name": "Response UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#c89ef520-1fe6-4bed-83c5-10c3fc905cc3",
       "description": "Il est possible de modifier une réponse d'un ticket ou chantier. Il est nécessaire de compléter le champ id pour spécifier la réponse qui doit être modifiée.\nIl est possible d'ajouter une réponse au sein d'un ticket/chantier sur Organilog en suivant le descriptif de cette API.\nLe paramètre message est le contenu du message.\nLe paramètre author_type permet de définir si l'auteur du message est un collaborateur du compte Organilog ou un client. Les valeurs possibles sont \"1\" (client) ou \"0\" (utilisateur du compte). La valeur par défaut est \"0\".\nLe paramètre is_private permet de définir si le message est public ou privé. Les valeurs possibles sont \"0\" (public) ou \"1\" (privé). Si la valeur n'est pas renseigné, ce champ sera rempli par le paramétrage qui défini la valeur par défaut;\nLe paramètre last_modif_by_fk_user_id est obligatoire si author_type est à \"0\". Il permet de définir l'ID de l'auteur du message.\nLe paramètre comment_private permet de définir un message privé en complément.",
       "sample": {
         "id": "1615670",
@@ -2564,6 +2687,7 @@
       "kind": "delete",
       "group": "Response",
       "name": "Response DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#f403242d-8e31-46d3-8ac6-277876319f33",
       "description": "Il est possible de supprimer une réponse au sein d'un ticket / chantier. Il est nécessaire de compléter le champ id pour spécifier le message qui doit être supprimé.",
       "sample": {
         "id": "1615673"
@@ -2578,6 +2702,7 @@
       "kind": "read",
       "group": "ReportSent",
       "name": "ReportSent READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#300bdf4d-a642-4a1d-ad2b-cf5f12c5464b",
       "description": "Permet de lire les informations d'un rapport envoyé par email. L'identifiant uniquement ( id ) de l'élément doit être envoyé.",
       "sample": {
         "id": "3498984"
@@ -2592,6 +2717,7 @@
       "kind": "read",
       "group": "ReportSent",
       "name": "ReportSent READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#f243bab1-124c-44f9-9ff5-ad0d8049c787",
       "description": "Permet de chercher les rapports envoyés par email par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les rapports.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernier ajout (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés après la date+heure indiqué, seront retournés.",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2609,6 +2735,7 @@
       "kind": "read",
       "group": "ReportSent",
       "name": "ReportSent READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b87d9d3a-5751-468d-8169-a9dd960eff66",
       "description": "Permet de lire les informations de un ou plusieurs rapports envoyés par email. L'identifiant ( ids ) permet de sélectionner les identifiants séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments",
       "sample": {
         "ids": "3498984,3493901"
@@ -2617,12 +2744,38 @@
       "note": null
     },
     {
+      "id": "custom_field/new",
+      "entity": "custom_field",
+      "action": "new",
+      "kind": "create",
+      "group": "Custom Field",
+      "name": "Custom Field CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#f4724a7b-f7b3-401c-bbc1-674092f478a1",
+      "description": "Il est possible de créer un champ personnalisé avec cet endpoint.\nLa propriété field_type accepte les valeurs suivantes :\n0 : Texte sur une ligne\n1 : Texte multiligne\n2 : Numérique\n3 : Oui/Non (0/1)\n4 : Liste\n5 : Monétaire\n6 : Email\n7 : Date\n8 : Heure\n9 : Téléphone\n10 : Choix multiple\n11 : Site web\n13 : Tableau\nLa propriété field_type_list ne peut être utilisée qu’avec le type 4,\nListe, ou le type 10, Choix multiple. Cette propriété peut contenir des valeurs telles que : \"field_type_list\": [ { \"nom\": \"Faible\" }, { \"nom\": \"Normale\" }, { \"nom\": \"Haute\" } ]\nLa propriété type_str peut contenir les valeurs suivantes :\nintervention : Intervention\ninvoice : Facture\nreceipt : Facture d'acompte\nstatus : Facture de situation\nissue : Demande client (ticket)\nuser : Collaborateur\nadresse : Adresse\nequipement : Equipement / Installation\ncontact : Contact\ndeal : Offre\norder : Commande\nsupplier : Fournisseur\nPlusieurs valeurs peuvent être ajouté, séparé par une virgule.",
+      "sample": {
+        "data": {
+          "nom": "Libellé du champ personnalisé",
+          "type_str": "equipement,intervention",
+          "field_type": "0",
+          "default": "Texte par défaut dans la valeur du champ",
+          "fk_intervention_categorie_id": "0",
+          "fk_equipement_categorie_id": "0",
+          "sort": "1",
+          "is_mandatory": "0",
+          "is_available_on_mobile": "1"
+        }
+      },
+      "verified_live": false,
+      "note": "Creates a custom-field definition. This is a write, despite the action being named new. custom_field/create instead upserts values on existing records."
+    },
+    {
       "id": "custom_field/read_all",
       "entity": "custom_field",
       "action": "read_all",
       "kind": "read",
       "group": "Custom Field",
       "name": "Custom Field READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#c553bee9-7bf0-49a2-b752-c87cb571f3ed",
       "description": "Permet de chercher les champs personnalisés par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les champs personnalisés.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2634,12 +2787,39 @@
       "note": null
     },
     {
+      "id": "custom_field/update",
+      "entity": "custom_field",
+      "action": "update",
+      "kind": "update",
+      "group": "Custom Field",
+      "name": "Custom Field UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#7eb5ab20-d94d-46bc-897e-21bd0019406e",
+      "description": "Il est possible de modifier une champ personnalisé. Il est nécessaire de compléter le champ id pour spécifier l'élément qui doit être modifié.\nLe détail des propriétés et leurs valeurs est détaillés dans le endpoint Custom Field CREATE.",
+      "sample": {
+        "id": "331988",
+        "data": {
+          "nom": "Libellé du champ personnalisé",
+          "type_str": "equipement,intervention",
+          "field_type": "0",
+          "default": "Texte par défaut dans la valeur du champ",
+          "fk_intervention_categorie_id": "0",
+          "fk_equipement_categorie_id": "0",
+          "sort": "1",
+          "is_mandatory": "0",
+          "is_available_on_mobile": "1"
+        }
+      },
+      "verified_live": false,
+      "note": "Updates a custom-field definition, not its values on a record."
+    },
+    {
       "id": "custom_field/create",
       "entity": "custom_field",
       "action": "create",
       "kind": "create",
       "group": "Custom Field",
       "name": "Custom Field CREATE (UPSERT)",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#1af07e8d-220d-4f05-96dc-9bbf8affd7c8",
       "description": "Il est possible d'ajouter la valeur pour un champ personnalisé, en utilisant un principe de UPSERT (INSERT si aucune valeur n'existait jusqu'à présent, et UPDATE si une valeur existait déjà.\nPlusieurs valeurs peuvent être envoyée via le tableau \" rows \". Ce tableau contient les champs suivants :\nmodule : permet de définir le module concerné parmi : client , adresse , contact , equipement , intervention , intervention_group , issue , product et user\nfk_column_id : défini l'identifiant de l'élément (exemple : l'ID du contact)\nfk_field_id : défini le champ personnalisé qui nécessite une mise à jour\nvalue : nouvelle valeur du champ personnalisé pour cet élément.\nRemarque : la valeur pour un type \"liste\" ou \"choix multiple\" correspond à l'ID sélectionné au sein de la liste déroulante\nLa valeur de retour sera un tableau contenant les identifiants des champs personnalisés modifiés et l'information si ça à été un succès ou un échec.",
       "sample": {
         "data": {
@@ -2723,6 +2903,7 @@
       "kind": "read",
       "group": "Custom Field",
       "name": "Custom Field READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#ad8db4b5-f9f1-4395-9806-4807edf4536e",
       "description": "Permet de lire les informations des champs personnalisés associés à l'élément d'un des module défini par le paramètre module . L'identifiant uniquement ( id ) de l'élément doit être envoyé.\nLes valeurs disponibles pour module sont : client , adresse , equipement , intervention , intervention_group , issue , product , universal_module , user .\nLes valeurs de retours sont un tableau des données connues. Si un champ personnalisé n'est pas présent dans la liste de retour, c'est qu'il n'a jamais été complété au sein de l'interface.\nPour obtenir les valeurs des champs personnalisés de l'intervention ayant l'identifiant 123456, il convient d'utiliser le paramètre \" module \" à \" intervention \" et \" id \" à \" 123456 \".",
       "sample": {
         "module": "intervention",
@@ -2738,6 +2919,7 @@
       "kind": "read",
       "group": "CustomFieldValue",
       "name": "Custom Field Value READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#7d412dc8-8b88-46a0-8ec8-6bd13ac17a97",
       "description": "Permet de lire les valeurs des champs personnalisés.\nLe champ last_datetime est obligatoire et doit comporter une valeur au format \" YYYY-MM-DD HH:MM \".\nLe tableau de retour contient notamment le champ \"link_table_name\" qui correspond au module correspondant au champ personnalisé, tel que : client , adresse , equipement , intervention , intervention_group , issue , product , universal_module , user .\nLa colonne \"fk_column_id\" correspond à la clé étrangère (Foreign Key) de l'élément. Par exemple si la valeur de retour dans \" link_table_name \" est \" client \", cela signifie que \" fk_column_id \" correspond à la clé étrangère de la fiche du client.",
       "sample": {
         "last_datetime": "2024-01-01 10:00"
@@ -2752,6 +2934,7 @@
       "kind": "create",
       "group": "Warehouse",
       "name": "Warehouse CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#49c6b935-731b-4813-a340-0ab06103261f",
       "description": "Il est possible d'ajouter un entrepôt sur Organilog en suivant le descriptif de cette API.",
       "sample": {
         "data": {
@@ -2769,6 +2952,7 @@
       "kind": "read",
       "group": "Warehouse",
       "name": "Warehouse READ ONE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#9a95541e-c12f-46b0-839b-e64c7393b4a8",
       "description": "Permet de lire les informations d'un entrepôt.\nL'identifiant uniquement ( id ) de l'entrepôt doit être envoyé. Ou à défaut, le n° de l'élément dans le compte via le paramètre code_id .",
       "sample": {
         "id": "1234"
@@ -2783,6 +2967,7 @@
       "kind": "read",
       "group": "Warehouse",
       "name": "Warehouse READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#b9ac1fb2-e598-4713-848e-bf6385d3b141",
       "description": "Permet de chercher les entrepôts par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les éléments.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",
@@ -2800,6 +2985,7 @@
       "kind": "read",
       "group": "Warehouse",
       "name": "Warehouse READ MULTIPLE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#71e04612-bfa8-485d-a39a-3835bf1f81e0",
       "description": "Permet de lire les informations de un ou plusieurs entrepôts. L'identifiant ( ids ) permet de sélectionner les éléments séparés par une virgule.\nRemarque : cet appel à l'API dispose d'une limite de 30 éléments\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "ids": "1,1234,1613"
@@ -2814,6 +3000,7 @@
       "kind": "update",
       "group": "Warehouse",
       "name": "Warehouse UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#528678b9-0420-42f5-92ae-15eea86b1f5c",
       "description": "Il est possible de modifier un entrepôt. Il est nécessaire de compléter le champ id pour spécifier l'entrepôt qui doit être modifié.",
       "sample": {
         "id": "1234",
@@ -2832,6 +3019,7 @@
       "kind": "delete",
       "group": "Warehouse",
       "name": "Warehouse DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#532c68a4-534e-4913-bb2f-478a489a07ec",
       "description": "Il est possible de supprimer un entrepôt. Il est nécessaire de compléter le champ id pour spécifier l'entrepôt qui doit être supprimé.",
       "sample": {
         "id": "1234"
@@ -2846,6 +3034,7 @@
       "kind": "create",
       "group": "WarehouseProduct",
       "name": "WarehouseProduct CREATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#f0110c8e-5c75-4469-8f0f-30cb144f3322",
       "description": "Il est possible d'ajouter une quantité de produit à un entrepôt sur Organilog en suivant le descriptif de cette API.\nLe champ fk_warehouse_id (id de l'entrepôt) est obligatoire et permet de lier à un entrepôt existant dans la base.\nLe champ fk_product_id (id du produit) est obligatoire et permet de lier à un produit existant dans la base.\nLe champ quantity (autorise les chiffres à virgules) défini la quantité. Ce champ écrase la précédente valeur.\nRemarque : ce endpoint dans l'API permet de créer la liaison si le produit n'existait pas encore dans l'API. Mais si la liaison existe (cf. chercher avec le endpoint WarehouseProduct READ_ALL), il convient plutôt d'utiliser le endpoint WarehouseProduct UPDATE afin d'adater la mise à jour.",
       "sample": {
         "data": {
@@ -2864,6 +3053,7 @@
       "kind": "read",
       "group": "WarehouseProduct",
       "name": "WarehouseProduct READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#2c015c41-d882-46a5-a367-52690928f268",
       "description": "Permet de chercher les liaisons entre entrepôts et produits par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir toutes les interventions.\nLe paramètre fk_warehouse_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'unentrepôt.\nLe paramètre fk_product_id est facultatif et permet de filtrer les éléments en fonction de l'identifiant d'un produit.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "fk_warehouse_id": "0",
@@ -2883,6 +3073,7 @@
       "kind": "update",
       "group": "WarehouseProduct",
       "name": "WarehouseProduct UPDATE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#fbf37eeb-464e-4dad-b606-504e4188f2f1",
       "description": "Il est possible de modifier une quantité de produit au sein d'un entrepôt. Il est nécessaire de compléter le champ id pour spécifier l'identifiant qui spécifie la liaison qui doit être modifiée.",
       "sample": {
         "id": "49593",
@@ -2902,6 +3093,7 @@
       "kind": "delete",
       "group": "WarehouseProduct",
       "name": "WarehouseProduct DELETE",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#e8cf08e5-d9a1-4b2d-b4a9-74cd166396bd",
       "description": "Il est possible de supprimer la liaison d'un produit au sein d'un entrepôt. Il est nécessaire de compléter le champ id pour spécifier l'identifiant de la liaison qui doit être supprimée.\nRemarque : dans la plupart des usages, il est plutôt conseillé de conserver cette liaison, mais d'utiliser le endpoint UPDATE pour définir une quantité à \"0\".",
       "sample": {
         "id": "49593"
@@ -2916,6 +3108,7 @@
       "kind": "read",
       "group": "Tax",
       "name": "Tax READ ALL",
+      "documentation_url": "https://documenter.getpostman.com/view/2071554/UzJFxK4j#6f4f4015-866a-454b-93ea-62dd9aa60201",
       "description": "Permet de chercher les taux de TVA par groupe de 50 éléments. Une pagination est nécessaire, via le paramètre page_nbr , pour obtenir tous les champs personnalisés.\nL'ordre des éléments peut être trié avec order_by soit par ordre d'ajout (valeur id ) soit par dernière modification (valeur last_update ).\nL'ordre ascendant ou descendant est défini par le paramètre order_sort (valeur asc ou desc ).\nLe paramètre \" last_datetime \" (format AAAA-MM-JJ HH:MM ou AAAA-MM-JJ HH:MM:SS) est facultatif. S'il est renseigné, seuls les éléments ajoutés ou modifiés après la date+heure indiqué, seront retournés.\nLe paramètre is_actif (optionnel) permet de filtrer pour obtenir les éléments actifs et/ou archivés. Il peut contenir 2 valeurs : \" 1 \" (valeur par défaut si non renseigné) pour obtenir uniquement les éléments actifs ou \" 0 \" pour obtenir les éléments archivés (cf. supprimés).",
       "sample": {
         "last_datetime": "2022-02-10 12:00",

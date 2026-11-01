@@ -53,6 +53,8 @@ Run the browser console checks with Node.js, without installing packages:
 ```sh
 node tests/console_status_test.js
 node tests/console_requests_test.js
+node tests/catalog_test.mjs
+node tests/catalog_sync_test.mjs
 ```
 
 For Docker-based PHP checks, including real Apache routing and access protection:
@@ -74,6 +76,12 @@ suite against the extracted release ZIP. Separate jobs run the Node.js checks
 and Docker/Apache checks. No live credentials or self-hosted runner are needed.
 See the [CI and release guide](docs/development.md#ci-and-releases) for packaging
 and release instructions.
+
+Maintainers can use **Actions → Catalog sync → Run workflow** to compare the
+bundled catalog with Organilog's latest public collection. A weekly scheduled
+check also produces a timestamped summary and a downloadable change report.
+See the [catalog sync guide](docs/development.md#maintainer-catalog-sync) for
+local checks and reviewing proposed updates. This requires no Organilog key.
 
 ## Submit a pull request
 

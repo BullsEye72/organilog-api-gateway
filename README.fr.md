@@ -113,6 +113,8 @@ Dans **Console**, choisissez un point d’accès dans la liste, lisez ses notes 
 adaptez l’exemple de requête avec les valeurs de votre compte. Cliquez sur **Send**
 pour voir la réponse, ou sur **Copy as curl** pour utiliser la requête ailleurs.
 L’onglet **History** affiche les dernières requêtes effectuées depuis ce navigateur.
+**Official documentation** ouvre la documentation Organilog du point d’accès
+sélectionné dans un nouvel onglet.
 
 Vos intégrations appellent votre propre domaine et transmettent leur clé dans un
 en-tête `Authorization: Bearer ...`. Par exemple, cette requête de lecture liste
@@ -127,6 +129,12 @@ Remplacez le domaine et `YOUR_INTEGRATION_KEY` par vos propres valeurs. Le proxy
 ajoute automatiquement le compte et le jeton Organilog. Le champ `data` de la
 réponse contient la réponse d’Organilog. La console fournit la documentation des
 points d’accès et des exemples de requêtes.
+
+Pour obtenir la liste des fonctions disponibles sur cette installation au format
+JSON, appelez **`GET /v1/catalog`** avec le même en-tête d’authentification.
+Chaque point d’accès indique son type d’opération et si votre clé peut l’utiliser.
+Le [guide de développement](docs/development.md#list-functions-without-browsing-documentation)
+explique comment comparer ce catalogue avec la collection Postman publique d’Organilog.
 
 ### Autoriser les modifications dans Organilog
 

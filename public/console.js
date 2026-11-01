@@ -248,6 +248,8 @@ function selectEndpoint(id, body) {
   $("#ep-kind").className = `badge ${ep.kind}`;
   $("#ep-kind").textContent = ep.kind;
   $("#ep-name").textContent = ep.name;
+  $("#ep-doc-link").href = ep.documentation_url || state.info.catalog.source
+    || "https://documenter.getpostman.com/view/2071554/UzJFxK4j";
   $("#ep-verified").hidden = !ep.verified_live;
   $("#ep-unverified").hidden = ep.verified_live;
   $("#ep-note").hidden = !ep.note;

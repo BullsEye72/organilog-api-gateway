@@ -7,7 +7,7 @@
 // pair that is not in it is refused, so the proxy can never be used to probe for endpoints.
 
 import { readFile, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const COLLECTION_URL = "https://documenter.gw.postman.com/api/collections/2071554/UzJFxK4j";
@@ -36,6 +36,10 @@ const NOTES = {
     "Ticket comments. Filter with item_type=issue and fk_item_id=<ticket internal id>.",
   "contrat/read_multiple":
     "The docs point this at contact/read_multiple.php, which looks like a copy-paste slip; corrected to contrat/. Unverified.",
+  "custom_field/new":
+    "Creates a custom-field definition. This is a write, despite the action being named new. " +
+    "custom_field/create instead upserts values on existing records.",
+  "custom_field/update": "Updates a custom-field definition, not its values on a record.",
 };
 const DELETE_NOTE =
   "Probably archives rather than erases (read_all describes archived items as is_actif=0, " +
@@ -51,8 +55,10 @@ const ENTITY_NOTES = {
 };
 
 function kindOf(action) {
+  if (action === "new") return "create";
   if (action === "create" || action === "update" || action === "delete") return action;
-  return "read";
+  if (["", "read_one", "read_all", "read_multiple", "search"].includes(action)) return "read";
+  throw new Error(`Unknown action ${action}: classify its permissions before adding it to the allowlist`);
 }
 
 function toText(html) {
@@ -80,56 +86,103 @@ function sampleOf(raw) {
   }
 }
 
-async function loadCollection(path) {
+export async function loadCollection(path) {
   if (path) return JSON.parse(await readFile(path, "utf8"));
-  const res = await fetch(COLLECTION_URL);
+  const res = await fetch(COLLECTION_URL, { signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`collection download failed: HTTP ${res.status}`);
   return res.json();
 }
 
-const collection = await loadCollection(process.argv[2]);
-const endpoints = [];
-const entities = {};
+export function buildCatalog(collection, generatedAt = new Date().toISOString()) {
+  const endpoints = [];
+  const entities = {};
 
-(function walk(items, group) {
-  for (const item of items) {
-    if (item.item) { walk(item.item, group ?? item.name.trim()); continue; }
-    const req = item.request ?? {};
-    const raw = typeof req.url === "string" ? req.url : req.url?.raw ?? "";
-    let path = raw.replace(/^.*\/api\/v3\//, "");
-    if (group === "Contrat" && path === "contact/read_multiple.php") path = "contrat/read_multiple.php";
+  (function walk(items, group) {
+    for (const item of items) {
+      if (item.item) { walk(item.item, group ?? item.name.trim()); continue; }
+      const req = item.request ?? {};
+      const raw = typeof req.url === "string" ? req.url : req.url?.raw ?? "";
+      const url = new URL(raw);
+      if (url.origin !== "https://sync.organilog.com" || url.search || url.hash
+          || !/^\/api\/v3\/[a-z_]+\/(?:[a-z_]+\.php)?$/.test(url.pathname)) {
+        throw new Error(`Unsupported endpoint URL in ${item.name}`);
+      }
+      if (req.method !== "POST") throw new Error(`Unsupported method in ${item.name}`);
+      let path = url.pathname.slice("/api/v3/".length);
+      if (group === "Contrat" && path === "contact/read_multiple.php") path = "contrat/read_multiple.php";
 
-    const [entity, file = ""] = path.split("/");
-    const action = file.replace(/\.php$/, "");
-    const id = action ? `${entity}/${action}` : entity;
-    if (endpoints.some((e) => e.id === id)) continue;
+      const [entity, file = ""] = path.split("/");
+      const action = file.replace(/\.php$/, "");
+      const id = action ? `${entity}/${action}` : entity;
+      if (action === "" && entity !== "account") throw new Error(`Unknown action for ${id}`);
+      if (endpoints.some((e) => e.id === id)) throw new Error(`Duplicate endpoint ${id}`);
 
-    const sample = sampleOf(req.body?.raw);
-    if (id === "issue/read_one") { delete sample.id; sample.code_id = "12345"; }
+      const sample = sampleOf(req.body?.raw);
+      if (id === "issue/read_one") { delete sample.id; sample.code_id = "12345"; }
+      // Postman's published navigation uses the request's _postman_id as its hash.
+      const documentationId = item._postman_id ?? item.id;
+      const documentationUrl = typeof documentationId === "string"
+        && /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(documentationId)
+        ? `${DOCS_URL}#${documentationId}` : DOCS_URL;
 
-    entities[entity] ??= { group: group === "_ Init" ? "Account" : group.replace(/\s+/g, " "), note: ENTITY_NOTES[entity] ?? null };
-    endpoints.push({
-      id,
-      entity,
-      action,
-      kind: kindOf(action),
-      group: entities[entity].group,
-      name: item.name.trim(),
-      description: toText(req.description),
-      sample,
-      verified_live: VERIFIED_LIVE.has(id),
-      note: NOTES[id] ?? (action === "delete" ? DELETE_NOTE : null),
-    });
+      entities[entity] ??= { group: group === "_ Init" ? "Account" : (group ?? entity).replace(/\s+/g, " "), note: ENTITY_NOTES[entity] ?? null };
+      endpoints.push({
+        id,
+        entity,
+        action,
+        kind: kindOf(action),
+        group: entities[entity].group,
+        name: item.name.trim(),
+        documentation_url: documentationUrl,
+        description: toText(req.description),
+        sample,
+        verified_live: VERIFIED_LIVE.has(id),
+        note: NOTES[id] ?? (action === "delete" ? DELETE_NOTE : null),
+      });
+    }
+  })(collection.item, null);
+
+  if (endpoints.length === 0) throw new Error("The published collection contains no endpoints; refusing an empty catalog.");
+
+  return {
+    source: DOCS_URL,
+    generated_at: generatedAt,
+    daily_limit_note: toText(collection.info?.description).match(/limite journalière de [\d.]+ requêtes/i)?.[0] ?? null,
+    entities,
+    endpoints,
+  };
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const check = args[0] === "--check";
+  if (check) args.shift();
+  if (args.length > 1 || args[0]?.startsWith("--")) throw new Error("Usage: node bin/build-catalog.mjs [--check] [collection.json]");
+  const catalog = buildCatalog(await loadCollection(args[0]));
+  if (check) {
+    const current = JSON.parse(await readFile(OUT, "utf8"));
+    // Generation time is deliberately ignored; compare documentation, samples,
+    // permission kinds, and routes as well as the endpoint count.
+    const { generated_at: oldTime, ...oldData } = current;
+    const { generated_at: newTime, ...newData } = catalog;
+    if (JSON.stringify(oldData) !== JSON.stringify(newData)) {
+      const oldIds = new Set(current.endpoints.map(e => e.id));
+      const newIds = new Set(catalog.endpoints.map(e => e.id));
+      console.error(JSON.stringify({
+        added: [...newIds].filter(id => !oldIds.has(id)),
+        removed: [...oldIds].filter(id => !newIds.has(id)),
+        message: "Catalog differs from the published collection. Regenerate and review the diff.",
+      }, null, 2));
+      process.exitCode = 1;
+      return;
+    }
+    console.log(`Catalog matches: ${catalog.endpoints.length} endpoints across ${Object.keys(catalog.entities).length} entities`);
+    return;
   }
-})(collection.item, null);
+  await writeFile(OUT, JSON.stringify(catalog, null, 2) + "\n", "utf8");
+  console.log(`${catalog.endpoints.length} endpoints across ${Object.keys(catalog.entities).length} entities -> ${OUT}`);
+}
 
-const catalog = {
-  source: DOCS_URL,
-  generated_at: new Date().toISOString(),
-  daily_limit_note: toText(collection.info?.description).match(/limite journalière de [\d.]+ requêtes/i)?.[0] ?? null,
-  entities,
-  endpoints,
-};
-
-await writeFile(OUT, JSON.stringify(catalog, null, 2) + "\n", "utf8");
-console.log(`${endpoints.length} endpoints across ${Object.keys(entities).length} entities -> ${OUT}`);
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await main();
+}

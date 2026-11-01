@@ -70,6 +70,8 @@ jobs:
           package-manager-cache: false
       - run: node tests/console_status_test.js
       - run: node tests/console_requests_test.js
+      - run: node tests/catalog_test.mjs
+      - run: node tests/catalog_sync_test.mjs
 
   apache:
     name: Docker and Apache checks
