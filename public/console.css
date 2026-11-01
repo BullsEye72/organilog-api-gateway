@@ -135,6 +135,8 @@ kbd { font-size: 11px; opacity: .75; margin-left: 4px; }
 .empty { color: var(--muted); margin: auto; }
 #request { display: flex; flex-direction: column; gap: 10px; }
 .ep-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ep-doc-link { color: var(--accent); font-size: 13px; text-underline-offset: 3px; }
+.ep-doc-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 .note { background: var(--note-bg); border: 1px solid var(--note-border); border-radius: 6px; padding: 8px 12px; line-height: 1.5; }
 .note.subtle { background: transparent; border-color: var(--border); color: var(--muted); }
 details pre { white-space: pre-wrap; background: var(--code-bg); padding: 10px; border-radius: 6px; margin: 6px 0 0; line-height: 1.5; font-family: inherit; font-size: 13px; }

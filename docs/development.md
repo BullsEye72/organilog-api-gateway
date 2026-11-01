@@ -122,6 +122,8 @@ Run the offline checks with PHP and its required extensions:
 php tests/run.php
 node tests/console_status_test.js
 node tests/console_requests_test.js
+node tests/catalog_test.mjs
+node tests/catalog_sync_test.mjs
 ```
 
 The checks use an isolated temporary installation and fabricated local upstream
@@ -136,12 +138,111 @@ To regenerate the catalog with Node.js 18+:
 node bin/build-catalog.mjs
 # Or read an already downloaded Postman collection:
 node bin/build-catalog.mjs collection.json
+# Check for changes without overwriting the bundled catalog:
+node bin/build-catalog.mjs --check
+node bin/build-catalog.mjs --check collection.json
 ```
 
 The builder reads Organilog's public Postman collection; it never calls the account
 API. Review the generated diff before committing. Historical `verified_live` flags
 describe development checks, not validation against every installation or future API
 version. Endpoint notes document known documentation discrepancies and uncertainties.
+
+### List functions without browsing documentation
+
+Organilog publishes its v3 requests as a machine-readable [Postman collection](https://documenter.gw.postman.com/api/collections/2071554/UzJFxK4j).
+The builder recursively reads this collection and extracts routes, samples, and
+descriptions. No Organilog token is needed to download it. `--check` returns a
+nonzero exit code when the bundled catalog differs, ignoring its generation time.
+The maintainer workflow below runs this comparison periodically. The offline CI
+suite does not depend on an external documentation service.
+
+Each endpoint's `documentation_url` links to the corresponding official request
+using Postman's published request ID. The console displays **Official documentation**
+beside the route title and opens it in a new tab. Collections without request IDs
+fall back to the main documentation. Local discrepancy notes remain visible.
+
+The gateway's authenticated `GET /v1/catalog` lists the functions bundled with
+that deployment, including each route's `kind` and the current key's `allowed`
+flag. It is not an upstream discovery endpoint. A collection comparison verifies
+coverage of the published API; it cannot establish whether undocumented functions
+exist. The standard upstream OpenAPI/Swagger JSON locations checked during the
+[route audit](api-route-audit.md) returned 404.
+
+The action `custom_field/new` creates a field definition; `custom_field/create`
+upserts field values. Both require create permission and the server write switch.
+Unknown actions now stop generation until their permission kind is explicitly
+classified, and duplicate routes stop generation rather than being discarded.
+
+### Maintainer catalog sync
+
+The [Catalog sync workflow](../.github/workflows/catalog-sync.yml) runs every
+Monday at **07:23 UTC**. You can also start it from **Actions → Catalog sync →
+Run workflow**. Scheduled runs start once the workflow is on the repository's
+default branch and Actions is enabled. GitHub can delay scheduled runs; the
+summary's actual check timestamp is the source of truth.
+
+Each run compares the latest public Postman collection with `data/catalog.json`.
+The Actions summary shows the check date, bundled/published endpoint counts, new
+and removed routes, and changed endpoint or catalog fields. Documentation links,
+descriptions, examples, and permission kinds are included in the comparison.
+Generation timestamps and JSON property/route ordering are ignored.
+
+The **catalog-sync** artifact is retained for 30 days and contains:
+
+- `report.md`: the human-readable summary.
+- `report.json`: detailed before/after values for changed fields.
+- `catalog.candidate.json`: a proposed catalog, only when differences were found.
+
+The run succeeds when current, fails with exit 1 when changes need review, and
+fails with exit 2 when the check cannot determine sync status (download/format
+failure, empty collection, or an action requiring permission classification).
+Failures also retain the report. An unsupported action must be classified in the
+builder before a candidate can be generated. Report states describe published
+coverage, not live endpoint availability.
+
+Run the same check locally without any Organilog credentials:
+
+```sh
+node bin/check-catalog.mjs
+# Work offline from an already downloaded collection:
+node bin/check-catalog.mjs --collection collection.json
+# Choose a different private report directory:
+node bin/check-catalog.mjs --report-dir backup/catalog-sync
+```
+
+Local reports default to gitignored `backup/catalog-sync/`. Review the report and
+candidate, regenerate using `node bin/build-catalog.mjs`, inspect the diff, and
+run the offline checks before opening a PR. Neither the command nor workflow
+updates the bundled catalog, opens a PR, or deploys changes. The workflow has
+read-only repository permissions and requires no account secrets. It is separate
+from the required PR/release CI so an upstream documentation outage does not
+block normal development.
+
+### Audit a deployed gateway
+
+Set `ORGANILOG_AUDIT_URL` to the gateway's HTTPS origin and
+`ORGANILOG_AUDIT_KEY` through your environment or secret manager, then run:
+
+```sh
+node bin/audit-routes.mjs audit-report.json
+# Check local write-method guards without calling Organilog:
+node bin/audit-routes.mjs guard-report.json --guards-only
+```
+
+The script reads one page from list routes, uses IDs returned by that account for
+record reads, and checks output types, field names, counts, and error codes. It
+never sends an upstream write. Write routes are checked using GET rejection;
+their actual write responses require a separate test account with disposable
+data. Routes without a matching record use ID 0, so a response does not establish
+that an existing record can be retrieved. It stops upstream requests on connection
+failure or cooldown and continues local write-method checks. Rerun after recovery.
+`ORGANILOG_AUDIT_SKIP` optionally excludes comma-separated route IDs.
+
+Reports contain no response values or credentials, but may contain custom field
+names. Store them privately (for example, under gitignored `backup/`) and do not
+commit account-specific data. The script exits nonzero on failures or untested
+routes, including the reads intentionally omitted by `--guards-only`.
 
 ## CI and releases
 

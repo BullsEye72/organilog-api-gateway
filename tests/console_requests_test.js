@@ -30,16 +30,31 @@ const context = vm.createContext({
     },
   },
   setInterval() {}, setTimeout, clearTimeout, AbortController, Date, URLSearchParams, performance,
+  location: { origin: "https://gateway.example" },
   confirm: () => { confirmations++; return true; },
   fetch: (url, options) => url === "/branding.php"
     ? Promise.resolve({ json: async () => ({ configured: true }) })
     : new Promise((resolve, reject) => requests.push({ url, options, resolve, reject })),
 });
 vm.runInContext(fs.readFileSync(path.join(__dirname, "../public/console.js"), "utf8") +
-  "\nglobalThis.hooks = { state, send };", context);
-const { state, send } = context.hooks;
+  "\nrenderEndpointList = () => {}; globalThis.hooks = { state, send, selectEndpoint };", context);
+const { state, send, selectEndpoint } = context.hooks;
 
 (async () => {
+  const source = "https://documenter.getpostman.com/view/2071554/UzJFxK4j";
+  state.info = { catalog: { source, entities: {} } };
+  state.endpoints = [
+    { id: "custom_field/new", entity: "custom_field", kind: "create", name: "Create field", sample: {},
+      documentation_url: `${source}#9100685d-f7c0-4be6-8595-d30ac92ad572`, note: "Creates a definition, not a value." },
+    { id: "account", entity: "account", kind: "read", name: "Account", sample: {} },
+  ];
+  selectEndpoint("custom_field/new");
+  assert.equal(node("#ep-doc-link").href, state.endpoints[0].documentation_url);
+  assert.equal(node("#ep-note").hidden, false, "Documentation links must preserve local discrepancy notes");
+  selectEndpoint("account");
+  assert.equal(node("#ep-doc-link").href, source, "Older catalogs fall back without keeping the previous route's link");
+  state.info = null;
+
   state.key = "fixture-key";
   state.current = { id: "response/create", entity: "response", kind: "create" };
   node("#method").value = "POST";

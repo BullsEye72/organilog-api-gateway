@@ -229,6 +229,7 @@ try {
     [$exit] = cli($root, [], '', $containerEnv);
     check($exit !== 0 && file_get_contents($containerConfig) === $beforeContainerConfig, 'Custom-path setup must also refuse to overwrite an existing installation.');
 
+    require __DIR__ . '/catalog-api-checks.php';
     require __DIR__ . '/health-api-checks.php';
     require __DIR__ . '/installer-checks.php';
     foreach (['json_file_test.php', 'upstream_test.php'] as $testFile) {

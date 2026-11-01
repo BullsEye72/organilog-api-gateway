@@ -119,6 +119,24 @@ try {
     check(($writeError?->details['write_outcome'] ?? '') === 'unknown' && $invalidWrite->calls === 1, 'An invalid write reply must communicate uncertainty and never retry.');
     $catalog = new Catalog();
     $admin = new Principal('admin', 'admin', true);
+    // Every published route must preserve a successful upstream response. Real
+    // writes are disabled during live audits, so exercise them on this fixture.
+    file_put_contents($file, '{}');
+    $catalogClient = new Upstream(array_merge($options, ['base_url' => 'http://' . $address . '/response/object']), $health);
+    $catalogProxy = new Proxy(['allow_writes' => true, 'verify_updates' => false], $catalog, $catalogClient);
+    foreach ($catalog->all()['endpoints'] as $endpoint) {
+        [$resultStatus, $reply] = $catalogProxy->handle($admin, $endpoint['id'], ['id' => '123', 'data' => []], false);
+        check($resultStatus === 200 && $reply['ok'] && $reply['data'] === ['fixture' => true],
+            'Every catalog endpoint preserves upstream output: ' . $endpoint['id']);
+    }
+    $reader = new Principal('reader', 'reader', false, ['*' => ['read']]);
+    foreach (['custom_field/new', 'custom_field/update'] as $endpointId) {
+        $beforeCalls = $catalogClient->calls;
+        $denied = false;
+        try { $catalogProxy->handle($reader, $endpointId, [], false); }
+        catch (ApiError $e) { $denied = $e->errorCode === 'forbidden'; }
+        check($denied && $catalogClient->calls === $beforeCalls, 'Field definition writes cannot use read permission: ' . $endpointId);
+    }
     foreach ([
         ['ERROR' => 'Invalid token'], ['errors' => ['Rejected']], ['SUCCESS' => false],
         ['ok' => false], ['status' => 'failed'], ['MESSAGE' => 'Invalid token'],

@@ -98,6 +98,8 @@ In **Console**, pick an endpoint from the list, read its notes, and edit the sam
 request with values from your account. Click **Send** to see the response, or
 **Copy as curl** to use the request elsewhere. **History** shows recent requests
 from that browser.
+**Official documentation** opens the selected endpoint's Organilog documentation
+in a new tab.
 
 Your integrations call your own domain and send their key in an
 `Authorization: Bearer ...` header. For example, this read request lists tickets:
@@ -110,6 +112,12 @@ curl 'https://organilog.example.com/v1/issue/read_all?page_nbr=1' \
 Replace the domain and key with your own. The proxy adds the Organilog account and
 token automatically. The response's `data` field contains Organilog's answer.
 The console includes endpoint documentation and request samples.
+
+For a machine-readable list of this installation's available functions, call
+**`GET /v1/catalog`** with the same authorization header. Each endpoint includes
+its operation kind and whether your key is allowed to use it. See the
+[development guide](docs/development.md#list-functions-without-browsing-documentation)
+for checking coverage against Organilog's public Postman collection.
 
 ### Enable changes to Organilog
 
