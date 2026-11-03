@@ -130,6 +130,10 @@ ajoute automatiquement le compte et le jeton Organilog. Le champ `data` de la
 réponse contient la réponse d’Organilog. La console fournit la documentation des
 points d’accès et des exemples de requêtes.
 
+Vous migrez un outil existant de l’API Organilog vers ce proxy ? Changer l’adresse
+et le jeton ne suffit pas ; suivez le [guide de conversion](docs/migrating.md)
+(en anglais).
+
 Pour obtenir la liste des fonctions disponibles sur cette installation au format
 JSON, appelez **`GET /v1/catalog`** avec le même en-tête d’authentification.
 Chaque point d’accès indique son type d’opération et si votre clé peut l’utiliser.

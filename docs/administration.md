@@ -126,6 +126,23 @@ Successful proxy responses contain `ok`, `endpoint`, `kind`, `data`, and `meta`.
 `data` contains the upstream answer, with optional normalization applied. Errors
 contain `ok: false` and `error` with a `code` and `message`.
 
+The HTTP status tells a client whether repeating the request can help. Only 5xx
+responses (and 429) are worth retrying, and only for reads:
+
+| Status | `error.code` | Meaning | Retry? |
+| --- | --- | --- | --- |
+| 200 | — | Organilog accepted the request | — |
+| 400, 401, 403, 404, 405, 422 | various | The gateway refused the request (body, key, permission, route, `allow_writes`, missing `id`) | No; fix the request or the key |
+| 409 | `update_fields_lost` | The update was applied but emptied other fields; see `meta.verification` | No; inspect the record first |
+| 422 | `upstream_rejected` | Organilog answered and refused the request; its answer is in `data` | No |
+| 429 | `rate_limited` | This key exceeded its per-minute limit | After `Retry-After` |
+| 502 | `upstream_error`, `upstream_unreachable`, `upstream_invalid_response` | Organilog failed or could not be reached | Reads only; for writes see `write_outcome` |
+| 500 | `internal`, `storage` | The gateway itself failed; see the PHP error log | Reads only |
+| 503 | `upstream_cooldown` | Upstream calls are paused after repeated failures | After `Retry-After` |
+
+A failed write carrying `write_outcome: unknown` may have been applied. Check the
+record in Organilog before sending it again, or a create may be duplicated.
+
 Updates can cost two extra upstream reads for verification. If a previously filled
 field becomes empty unexpectedly, the proxy attempts to restore the previous
 record and reports `fields_lost`. This is a best-effort safeguard, not a database
