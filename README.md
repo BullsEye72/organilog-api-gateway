@@ -113,6 +113,9 @@ Replace the domain and key with your own. The proxy adds the Organilog account a
 token automatically. The response's `data` field contains Organilog's answer.
 The console includes endpoint documentation and request samples.
 
+Moving an existing tool from the Organilog API to this proxy? Changing the address
+and token is not enough; follow the [conversion guide](docs/migrating.md).
+
 For a machine-readable list of this installation's available functions, call
 **`GET /v1/catalog`** with the same authorization header. Each endpoint includes
 its operation kind and whether your key is allowed to use it. See the
