@@ -152,7 +152,7 @@ try {
         $client = new Upstream(array_merge($options, ['base_url' => 'http://' . $address . '/response/' . $scenario]), $health);
         $proxy = new Proxy(['allow_writes' => true, 'verify_updates' => true], $catalog, $client);
         [$resultStatus, $reply] = $proxy->handle($admin, $endpoint, ['id' => '123', 'data' => ['name' => 'after']], false);
-        check($resultStatus === 502 && !$reply['ok'] && $reply['error']['code'] === 'upstream_rejected', 'HTTP 200 application errors must fail: ' . $endpoint);
+        check($resultStatus === 422 && !$reply['ok'] && $reply['error']['code'] === 'upstream_rejected', 'HTTP 200 application errors must fail without inviting a retry: ' . $endpoint);
         check(!isset($reply['meta']['verification']) && !isset($reply['meta']['write_outcome']), 'Rejected writes must not be verified or acknowledged.');
         check($client->calls === ($endpoint === 'issue/update' ? 2 : 1), 'Application errors must not trigger retries or post-write verification.');
     }
@@ -162,11 +162,26 @@ try {
         $proxy = new Proxy(['allow_writes' => true, 'verify_updates' => true], $catalog, $client);
         [$resultStatus, $reply] = $proxy->handle($admin, 'issue/update', ['id' => '123', 'data' => ['name' => 'after']], false);
         if (in_array($scenario, ['verify_restore_invalid', 'verify_restore_rejected'], true)) {
-            check($resultStatus === 502 && !$reply['meta']['verification']['restored'], 'Unconfirmed restoration must report field loss without retrying blindly.');
+            check($resultStatus === 409 && $reply['error']['code'] === 'update_fields_lost' && !$reply['meta']['verification']['restored'],
+                'Unconfirmed restoration must report field loss with a non-retryable status.');
         } else {
             check($resultStatus === 200 && $reply['meta']['write_outcome'] === 'acknowledged'
                 && $reply['meta']['verification']['status'] === 'unknown', 'Verification failure must retain the acknowledged update result.');
         }
+    }
+    // Upstream HTTP failures: rejections are final (422); only server-side failures are 5xx.
+    foreach ([
+        ['http_error', 'issue/read_all', 422, 'upstream_rejected', null],
+        ['missing', 'issue/read_all', 422, 'upstream_rejected', null],
+        ['html_server_error', 'issue/read_all', 502, 'upstream_error', null],
+        ['html_server_error', 'issue/create', 502, 'upstream_error', 'unknown'],
+    ] as [$scenario, $endpoint, $expected, $code, $outcome]) {
+        file_put_contents($file, '{}');
+        $client = new Upstream(array_merge($options, ['base_url' => 'http://' . $address . '/response/' . $scenario]), $health);
+        $proxy = new Proxy(['allow_writes' => true, 'verify_updates' => false], $catalog, $client);
+        [$resultStatus, $reply] = $proxy->handle($admin, $endpoint, ['data' => []], false);
+        check($resultStatus === $expected && !$reply['ok'] && $reply['error']['code'] === $code
+            && ($reply['error']['write_outcome'] ?? null) === $outcome, "Upstream $scenario on $endpoint maps to $expected $code.");
     }
     file_put_contents($file, '{}');
     $before = $upstream->calls;

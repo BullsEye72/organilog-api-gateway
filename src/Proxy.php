@@ -70,15 +70,37 @@ final class Proxy
             $body['raw'] = mb_substr((string) $raw, 0, 5000);
         }
         $body['meta'] = $meta + ['upstream_calls' => $this->upstream->calls, 'key' => $principal->name];
-        if ($applicationError) {
-            $body['error'] = ['code' => 'upstream_rejected', 'message' => 'Organilog rejected the request; see data for its response.'];
-        }
 
         if (($meta['verification']['status'] ?? null) === 'fields_lost') {
             $body['ok'] = false;
-            return [502, $body];
+            $body['error'] = ['code' => 'update_fields_lost', 'message' => 'The update was applied but emptied other fields; see meta.verification before doing anything else.'];
+            return [409, $body];
         }
-        return [$ok ? 200 : 502, $body];
+        if ($ok) {
+            return [200, $body];
+        }
+        [$httpStatus, $body['error']] = self::failure($status, $applicationError, $kind);
+        return [$httpStatus, $body];
+    }
+
+    /**
+     * Only failures a retry could fix are 5xx. A rejection (application error, or an upstream
+     * 4xx) is 422: Organilog answered, so retrying the same request will not change the answer.
+     *
+     * @return array{0: int, 1: array}
+     */
+    private static function failure(int $upstreamStatus, bool $applicationError, string $kind): array
+    {
+        $rejected = $applicationError
+            || ($upstreamStatus >= 400 && $upstreamStatus < 500 && !in_array($upstreamStatus, [408, 429], true));
+        if ($rejected) {
+            return [422, ['code' => 'upstream_rejected', 'message' => 'Organilog rejected the request; see data for its response.']];
+        }
+        $error = ['code' => 'upstream_error', 'message' => "Organilog failed to answer (HTTP $upstreamStatus)."];
+        if ($kind !== 'read' && $upstreamStatus >= 500) {
+            $error['write_outcome'] = 'unknown';
+        }
+        return [502, $error];
     }
 
     private function snapshot(string $entity, string $id): ?array
